@@ -84,12 +84,17 @@
     position:relative;
     animation:riseIn .8s ease both;
   }
-  .card:nth-child(2){animation-delay:.1s}
-  .card:nth-child(3){animation-delay:.2s}
-  .card:nth-child(4){animation-delay:.3s}
-  .card:nth-child(5){animation-delay:.4s}
-  .card:nth-child(6){animation-delay:.5s}
-  .card:nth-child(7){animation-delay:.6s}
+  .card:nth-child(2){animation-delay:.06s}
+  .card:nth-child(3){animation-delay:.12s}
+  .card:nth-child(4){animation-delay:.18s}
+  .card:nth-child(5){animation-delay:.24s}
+  .card:nth-child(6){animation-delay:.3s}
+  .card:nth-child(7){animation-delay:.36s}
+  .card:nth-child(8){animation-delay:.42s}
+  .card:nth-child(9){animation-delay:.48s}
+  .card:nth-child(10){animation-delay:.54s}
+  .card:nth-child(11){animation-delay:.6s}
+  .card:nth-child(12){animation-delay:.66s}
   @keyframes riseIn{
     from{opacity:0; transform:translateY(26px)}
     to{opacity:1; transform:translateY(0)}
@@ -245,6 +250,118 @@
   .b-wa{background:linear-gradient(135deg,#25d366,#128c7e);}
   .b-tg{background:linear-gradient(135deg,#54a0ff,#0984e3);}
   .b-copy{background:linear-gradient(135deg,#a78bfa,#6c5ce7);}
+
+  .streak-chain{display:flex; flex-wrap:wrap; gap:8px; margin:14px 0;}
+  .chain-link{
+    width:34px; height:34px; border-radius:50%;
+    background:#eee; border:3px dashed #ccc;
+    display:flex; align-items:center; justify-content:center;
+    font-size:.9rem; color:#bbb;
+  }
+  .chain-link.on{
+    background:linear-gradient(135deg,#ff6b9d,#ff9f43);
+    border:3px solid #ff6b9d; color:#fff;
+    animation:tickPop .4s ease;
+    box-shadow:0 4px 10px rgba(255,107,157,.4);
+  }
+  #streakTxt{font-size:1.05rem; font-weight:800; color:var(--c1);}
+  #compareTxt{margin-top:10px; font-weight:700;}
+
+  .chart{display:flex; align-items:flex-end; gap:18px; height:170px; padding:10px 6px 0;}
+  .bar-wrap{flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;}
+  .bar{
+    width:100%; max-width:64px; border-radius:12px 12px 4px 4px;
+    background:linear-gradient(180deg,#a78bfa,#ff6b9d);
+    min-height:6px; transition:height .8s ease;
+    box-shadow:0 4px 12px rgba(167,139,250,.35);
+  }
+  .bar-label{font-size:.8rem; font-weight:700; color:#8a7fb0;}
+  .bar-val{font-size:.85rem; font-weight:800; color:var(--c4);}
+
+  .mood-row{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:14px;}
+  .mood-btn{
+    font-size:2.2rem; background:#f6f2ff; border:3px solid transparent;
+    border-radius:18px; padding:10px 16px; cursor:pointer;
+    transition:all .2s; font-family:inherit;
+  }
+  .mood-btn:hover{transform:scale(1.12) rotate(-5deg);}
+  .mood-btn.sel{border-color:var(--c1); background:#fff0f5; transform:scale(1.1); box-shadow:0 6px 14px rgba(255,107,157,.3);}
+  .mood-week{display:flex; gap:8px; justify-content:center; flex-wrap:wrap;}
+  .mood-day{
+    background:#faf7ff; border-radius:12px; padding:6px 10px;
+    font-size:1.3rem; text-align:center; min-width:52px;
+  }
+  .mood-day small{display:block; font-size:.65rem; color:#9b8fc0;}
+
+  .medals{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+  .medal{
+    background:#fffbea; border:2px solid #ffe08a; border-radius:16px;
+    padding:16px; text-align:center; position:relative;
+    transition:transform .2s;
+  }
+  .medal:hover{transform:translateY(-4px);}
+  .medal .m-emoji{font-size:2.4rem; display:block;}
+  .medal .m-name{font-weight:800; font-size:.85rem; margin-top:6px;}
+  .medal .m-desc{font-size:.72rem; color:#a08c4a; margin-top:2px;}
+  .medal.locked{filter:grayscale(1); opacity:.5;}
+  .medal.locked::after{
+    content:"🔒"; position:absolute; top:8px; left:10px; font-size:1rem;
+  }
+  .medal.unlocked{animation:tickPop .5s ease; box-shadow:0 6px 16px rgba(255,193,7,.3);}
+
+  .roadmap{position:relative; padding-right:30px;}
+  .roadmap::before{
+    content:""; position:absolute; right:10px; top:10px; bottom:10px;
+    width:5px; border-radius:5px;
+    background:linear-gradient(#4ecdc4,#a78bfa,#ff6b9d);
+  }
+  .station{
+    position:relative; margin-bottom:14px;
+    display:flex; align-items:center; gap:12px;
+    background:#faf7ff; border-radius:16px; padding:14px 18px;
+    transition:transform .2s;
+  }
+  .station:hover{transform:translateX(-6px);}
+  .station::before{
+    content:"📍"; position:absolute; right:-33px; font-size:1.2rem;
+  }
+  .station input[type=checkbox]{
+    appearance:none; width:26px; height:26px; flex-shrink:0;
+    border:3px solid var(--c4); border-radius:8px; cursor:pointer;
+    position:relative; transition:background .2s;
+  }
+  .station input[type=checkbox]:checked{background:var(--c2); border-color:var(--c2);}
+  .station input[type=checkbox]:checked::after{
+    content:"✓"; color:#fff; font-weight:900; position:absolute;
+    top:-2px; right:5px; font-size:1rem;
+  }
+
+  .sounds{display:flex; flex-wrap:wrap; gap:12px; justify-content:center;}
+  .sound-btn{
+    font-family:inherit; font-size:1rem; font-weight:800;
+    background:#f6f2ff; border:3px solid #e0d7ff; border-radius:16px;
+    padding:14px 22px; cursor:pointer; color:var(--ink);
+    transition:all .2s;
+  }
+  .sound-btn:hover{transform:translateY(-3px); background:#fff0f5;}
+  .sound-btn.playing{
+    background:linear-gradient(135deg,#4ecdc4,#54a0ff);
+    color:#fff; border-color:transparent;
+    animation:pulse 1.5s infinite;
+  }
+
+  textarea#msgBox{
+    width:100%; min-height:80px; font-family:inherit; font-size:.95rem;
+    border:2px dashed #d9d0f5; border-radius:14px; padding:12px 16px;
+    resize:vertical; background:#fdfcff; color:var(--ink);
+  }
+  textarea#msgBox:focus{outline:none; border-color:var(--c1); background:#fff0f5;}
+
+  .num-input{
+    font-family:inherit; width:90px; border:2px dashed #d9d0f5;
+    border-radius:8px; padding:4px 8px; background:#fff; color:var(--ink);
+  }
+
   footer{
     text-align:center; padding:20px; color:#9b8fc0; font-size:.85rem;
   }
@@ -260,14 +377,16 @@
     .t-grid{grid-template-columns:1fr;}
     .goals{grid-template-columns:repeat(3,1fr);}
     .palettes{grid-template-columns:repeat(4,1fr);}
+    .medals{grid-template-columns:repeat(3,1fr);}
     @page{margin:12mm;}
   }
   @media (max-width:720px){
     .t-grid,.goals,.night-list{grid-template-columns:1fr;}
-    .palettes{grid-template-columns:repeat(2,1fr);}
+    .palettes,.medals{grid-template-columns:repeat(2,1fr);}
     header h1{font-size:1.6rem;}
     .countdown{flex-wrap:wrap;}
     table{font-size:.75rem;}
+    .chart{gap:8px;}
   }
 </style>
 </head>
@@ -393,20 +512,78 @@
   </div>
 
   <div class="card">
-    <h2><span class="badge">🌙</span> چک‌لیست شبانه — آخر شب تیک بزن!</h2>
+    <h2><span class="badge">🌙</span> چک‌لیست شبانه — فقط ۱ دقیقه!</h2>
     <div class="night-list" id="nightList">
       <div class="night-item"><input type="checkbox"><span class="n-label" contenteditable="true">برنامه فردا رو چیدم</span></div>
-      <div class="night-item"><input type="checkbox"><span class="n-label" contenteditable="true">تست زدم (تعداد: <span contenteditable="true">...</span>)</span></div>
+      <div class="night-item"><input type="checkbox"><span class="n-label" contenteditable="true">تست زدم</span></div>
       <div class="night-item"><input type="checkbox"><span class="n-label" contenteditable="true">مرور امروز رو انجام دادم</span></div>
       <div class="night-item"><input type="checkbox"><span class="n-label" contenteditable="true">سر زمان مقرر مطالعه کردم</span></div>
       <div class="night-item"><input type="checkbox"><span class="n-label" contenteditable="true">گوشی رو کنار گذاشتم</span></div>
       <div class="night-item"><input type="checkbox"><span class="n-label" contenteditable="true">سر ساعت خوابیدم</span></div>
     </div>
-    <div class="tip">📅 تاریخ امروز: <b id="todayFa"></b> | 🌟 قصد فردا: <span contenteditable="true" id="tomorrowPlan">فردا بهتر از امروز!</span></div>
+    <div class="tip">🔢 تست امروز: <input type="number" id="testsToday" class="num-input" min="0" value="0"> | 📅 <b id="todayFa"></b></div>
     <div class="send-area">
       <button class="send-btn b-wa" onclick="sendReport('wa')">📤 ارسال گزارش به مشاور (واتساپ)</button>
       <button class="send-btn b-tg" onclick="sendReport('tg')">📤 ارسال با تلگرام</button>
       <button class="send-btn b-copy" onclick="sendReport('copy')">📋 کپی گزارش</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="badge">😊</span> حال و هوای امروز (یه لمس!)</h2>
+    <div class="mood-row">
+      <button class="mood-btn" data-mood="😄" onclick="setMood('😄')">😄</button>
+      <button class="mood-btn" data-mood="🙂" onclick="setMood('🙂')">🙂</button>
+      <button class="mood-btn" data-mood="😐" onclick="setMood('😐')">😐</button>
+      <button class="mood-btn" data-mood="😞" onclick="setMood('😞')">😞</button>
+      <button class="mood-btn" data-mood="😤" onclick="setMood('😤')">😤</button>
+    </div>
+    <div class="mood-week" id="moodWeek"></div>
+  </div>
+
+  <div class="card">
+    <h2><span class="badge">🔥</span> زنجیره روزهای موفق (خودکار)</h2>
+    <div class="streak-chain" id="streakChain"></div>
+    <div id="streakTxt"></div>
+    <div id="compareTxt"></div>
+  </div>
+
+  <div class="card">
+    <h2><span class="badge">📊</span> نمودار پیشرفت (خودکار)</h2>
+    <div class="chart" id="chartBars"></div>
+  </div>
+
+  <div class="card">
+    <h2><span class="badge">🏅</span> مدال‌های افتخار (خودکار)</h2>
+    <div class="medals" id="medalGrid"></div>
+  </div>
+
+  <div class="card">
+    <h2><span class="badge">🗺️</span> نقشه راه تا کنکور</h2>
+    <div class="roadmap">
+      <div class="station"><input type="checkbox"><span contenteditable="true">جمع‌بندی دروس عمومی</span></div>
+      <div class="station"><input type="checkbox"><span contenteditable="true">آزمون‌های جامع مرحله‌ای</span></div>
+      <div class="station"><input type="checkbox"><span contenteditable="true">مرور نهایی قلاب‌ها و نکته‌ها</span></div>
+      <div class="station"><input type="checkbox"><span contenteditable="true">شب کنکور: استراحت و آرامش</span></div>
+      <div class="station"><input type="checkbox"><span contenteditable="true">🏆 روز کنکور — موفق باشی!</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="badge">🎧</span> صداهای مطالعه</h2>
+    <div class="sounds">
+      <button class="sound-btn" data-sound="rain" onclick="toggleSound('rain', this)">☔ بارون</button>
+      <button class="sound-btn" data-sound="waves" onclick="toggleSound('waves', this)">🌊 موج دریا</button>
+      <button class="sound-btn" data-sound="fire" onclick="toggleSound('fire', this)">🔥 شومینه</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="badge">💌</span> پیام به مشاور (اختیاری)</h2>
+    <textarea id="msgBox" placeholder="هر سوالی یا حسی داری اینجا بنویس و بفرست..."></textarea>
+    <div class="send-area">
+      <button class="send-btn b-wa" onclick="sendMsg('wa')">📤 واتساپ</button>
+      <button class="send-btn b-tg" onclick="sendMsg('tg')">📤 تلگرام</button>
     </div>
   </div>
 
@@ -436,14 +613,31 @@
 <footer>ساخته شده با ❤️ برای قهرمان‌های کنکور ✨ | برای چاپ: Ctrl+P بزن</footer>
 
 <script>
-  document.getElementById('todayFa').textContent = new Date().toLocaleDateString('fa-IR', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+  function dateKey(d){
+    return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+  }
+  function todayKey(){ return dateKey(new Date()); }
+  function faDate(d, opts){ return d.toLocaleDateString('fa-IR', opts); }
+  document.getElementById('todayFa').textContent = faDate(new Date(), {weekday:'long', day:'numeric', month:'long'});
 
-  const KEY='konkur-planner-v1';
+  const DBKEY='konkur-db-v1';
+  let DB={days:{}};
+  try{ DB=JSON.parse(localStorage.getItem(DBKEY))||{days:{}}; }catch(e){ DB={days:{}}; }
+  function saveDB(){ try{ localStorage.setItem(DBKEY, JSON.stringify(DB)); }catch(e){} }
+  function getDay(k){
+    if(!DB.days[k]) DB.days[k]={mood:null, ticks:[], tests:0};
+    return DB.days[k];
+  }
+
+  const KEY='konkur-planner-v2';
   function saveState(){
     try{
       const data={text:{},checks:{}};
       document.querySelectorAll('[contenteditable="true"]').forEach((el,i)=>data.text[i]=el.innerHTML);
-      document.querySelectorAll('input[type=checkbox]').forEach((el,i)=>data.checks[i]=el.checked);
+      document.querySelectorAll('input[type=checkbox]').forEach((el,i)=>{
+        if(el.closest('#nightList')) return;
+        data.checks[i]=el.checked;
+      });
       localStorage.setItem(KEY, JSON.stringify(data));
     }catch(e){}
   }
@@ -453,56 +647,272 @@
       if(!raw) return;
       const data=JSON.parse(raw);
       document.querySelectorAll('[contenteditable="true"]').forEach((el,i)=>{ if(data.text[i]!==undefined) el.innerHTML=data.text[i]; });
-      document.querySelectorAll('input[type=checkbox]').forEach((el,i)=>{ if(data.checks[i]!==undefined) el.checked=data.checks[i]; });
+      document.querySelectorAll('input[type=checkbox]').forEach((el,i)=>{
+        if(el.closest('#nightList')) return;
+        if(data.checks[i]!==undefined) el.checked=data.checks[i];
+      });
     }catch(e){}
   }
-  loadState();
-  document.addEventListener('input', saveState);
+
+  function recordToday(){
+    const day=getDay(todayKey());
+    day.ticks=Array.from(document.querySelectorAll('#nightList input[type=checkbox]')).map(c=>c.checked);
+    saveDB();
+    refreshStats();
+  }
+  function restoreNight(){
+    const day=getDay(todayKey());
+    document.querySelectorAll('#nightList input[type=checkbox]').forEach((c,i)=>{
+      c.checked=!!day.ticks[i];
+      c.closest('.night-item').classList.toggle('done', c.checked);
+    });
+    document.getElementById('testsToday').value=day.tests||0;
+  }
+  document.getElementById('testsToday').addEventListener('change', function(){
+    const day=getDay(todayKey());
+    day.tests=Math.max(0, parseInt(this.value)||0);
+    saveDB();
+    refreshStats();
+  });
   document.addEventListener('change', function(e){
-    saveState();
-    if(e.target.type==='checkbox' && e.target.closest('.night-item')){
+    if(e.target.type==='checkbox' && e.target.closest('#nightList')){
       e.target.closest('.night-item').classList.toggle('done', e.target.checked);
+      recordToday();
+      return;
     }
+    saveState();
   });
-  document.querySelectorAll('.night-item input[type=checkbox]').forEach(c=>{
-    c.closest('.night-item').classList.toggle('done', c.checked);
-  });
+  document.addEventListener('input', saveState);
+
+  function weekStart(d){
+    const diff=(d.getDay()+1)%7;
+    const s=new Date(d); s.setDate(d.getDate()-diff); s.setHours(0,0,0,0);
+    return s;
+  }
+  function dayScore(k){
+    const day=DB.days[k];
+    if(!day || !day.ticks || !day.ticks.length) return null;
+    return day.ticks.filter(Boolean).length / day.ticks.length;
+  }
+  function calcStreak(){
+    let s=0;
+    const d=new Date();
+    if(dayScore(dateKey(d))===null) d.setDate(d.getDate()-1);
+    while(dayScore(dateKey(d))===1){
+      s++;
+      d.setDate(d.getDate()-1);
+    }
+    return s;
+  }
+  function totals(){
+    let days=0, tests=0, happy=0;
+    Object.keys(DB.days).forEach(k=>{
+      const day=DB.days[k];
+      const active=(day.ticks&&day.ticks.some(Boolean))||day.mood||(day.tests>0);
+      if(active) days++;
+      tests+=day.tests||0;
+      if(day.mood==='😄') happy++;
+    });
+    return {days, tests, happy};
+  }
+
+  function renderStreak(){
+    const s=calcStreak();
+    const chain=document.getElementById('streakChain');
+    chain.innerHTML='';
+    const show=Math.min(Math.max(s,7),14);
+    for(let i=0;i<show;i++){
+      const el=document.createElement('div');
+      el.className='chain-link'+(i<s?' on':'');
+      el.textContent=i<s?'🔥':(i+1);
+      chain.appendChild(el);
+    }
+    document.getElementById('streakTxt').textContent =
+      s>0 ? '🔥 '+s+' روز پشت سر هم عالی بودی! ادامه بده!' : 'امشب اولین حلقه زنجیره‌ات رو بساز! 💪';
+    const wk=weekStart(new Date());
+    const last=new Date(wk); last.setDate(last.getDate()-7);
+    function weekAvg(start){
+      let sum=0, n=0;
+      for(let i=0;i<7;i++){
+        const d=new Date(start); d.setDate(start.getDate()+i);
+        const sc=dayScore(dateKey(d));
+        if(sc!==null){ sum+=sc; n++; }
+      }
+      return n? Math.round(sum/n*100) : null;
+    }
+    const thisW=weekAvg(wk), lastW=weekAvg(last);
+    const cmp=document.getElementById('compareTxt');
+    if(thisW===null && lastW===null){ cmp.textContent='هنوز داده‌ای برای مقایسه نیست — از امشب شروع کن! 🌟'; }
+    else if(lastW===null){ cmp.textContent='📈 این هفته: '+thisW+'٪ — هفته بعد با خودت مقایسه میشه!'; }
+    else if(thisW===null){ cmp.textContent='این هفته هنوز شروع نشده — هفته قبلت: '+lastW+'٪'; }
+    else if(thisW>lastW){ cmp.textContent='🎉 این هفته '+thisW+'٪ بودی؛ '+Math.max(0,thisW-lastW)+'٪ بهتر از هفته قبل!'; }
+    else if(thisW<lastW){ cmp.textContent='💙 این هفته '+thisW+'٪ بودی؛ هفته قبل '+lastW+'٪ — اشکال نداره، از امشب برمی‌گردیم!'; }
+    else{ cmp.textContent='⚖️ دقیقاً هم‌قد هفته قبل! یه قدم جلوتر بذار! 🚀'; }
+  }
+
+  function renderChart(){
+    const wrap=document.getElementById('chartBars');
+    wrap.innerHTML='';
+    const labels=['این هفته','هفته قبل','۲ هفته قبل','۳ هفته قبل'];
+    for(let w=0; w<4; w++){
+      const start=weekStart(new Date());
+      start.setDate(start.getDate()-7*w);
+      let sum=0, n=0;
+      for(let i=0;i<7;i++){
+        const d=new Date(start); d.setDate(start.getDate()+i);
+        const sc=dayScore(dateKey(d));
+        if(sc!==null){ sum+=sc; n++; }
+      }
+      const pct=n? Math.round(sum/n*100) : 0;
+      const col=document.createElement('div');
+      col.className='bar-wrap';
+      col.innerHTML='<div class="bar-val">'+(n?pct+'٪':'—')+'</div><div class="bar" style="height:'+(n?Math.max(pct,5):3)+'%"></div><div class="bar-label">'+labels[w]+'</div>';
+      wrap.appendChild(col);
+    }
+  }
+
+  function setMood(m){
+    getDay(todayKey()).mood=m;
+    saveDB();
+    renderMood();
+    refreshStats();
+  }
+  function renderMood(){
+    document.querySelectorAll('.mood-btn').forEach(b=>{
+      b.classList.toggle('sel', b.dataset.mood===getDay(todayKey()).mood);
+    });
+    const week=document.getElementById('moodWeek');
+    week.innerHTML='';
+    const names=['ش','ی','د','س','چ','پ','ج'];
+    for(let i=6;i>=0;i--){
+      const d=new Date(); d.setDate(d.getDate()-i);
+      const day=DB.days[dateKey(d)];
+      const el=document.createElement('div');
+      el.className='mood-day';
+      el.innerHTML=(day&&day.mood?day.mood:'·')+'<small>'+(i===0?'امروز':names[(d.getDay()+1)%7])+'</small>';
+      week.appendChild(el);
+    }
+  }
+
+  function renderMedals(streak){
+    const t=totals();
+    const medals=[
+      {e:'🌱', n:'اولین قدم', d:'اولین روز ثبت شد', ok:t.days>=1},
+      {e:'🔥', n:'هفته آتشین', d:'۷ روز پیوسته', ok:streak>=7},
+      {e:'💯', n:'شکارچی تست', d:'مجموع ۵۰۰ تست', ok:t.tests>=500},
+      {e:'😄', n:'خنده بلند', d:'۵ روز حال خوب', ok:t.happy>=5},
+      {e:'📚', n:'ماه کامل', d:'۳۰ روز فعال', ok:t.days>=30},
+      {e:'👑', n:'قهرمان کنکور', d:'۳۰ روز پیوسته', ok:streak>=30}
+    ];
+    const grid=document.getElementById('medalGrid');
+    grid.innerHTML='';
+    medals.forEach(m=>{
+      const el=document.createElement('div');
+      el.className='medal '+(m.ok?'unlocked':'locked');
+      el.innerHTML='<span class="m-emoji">'+m.e+'</span><div class="m-name">'+m.n+'</div><div class="m-desc">'+m.d+'</div>';
+      grid.appendChild(el);
+    });
+  }
+
+  function refreshStats(){
+    const s=calcStreak();
+    renderStreak();
+    renderChart();
+    renderMedals(s);
+  }
+
+  let audioCtx=null, currentSound=null, soundNodes=[];
+  function stopSound(){
+    soundNodes.forEach(n=>{ try{ n.stop ? n.stop() : n.disconnect(); }catch(e){} });
+    soundNodes=[];
+    currentSound=null;
+    document.querySelectorAll('.sound-btn').forEach(b=>b.classList.remove('playing'));
+  }
+  function toggleSound(type, btn){
+    if(currentSound===type){ stopSound(); return; }
+    stopSound();
+    try{
+      audioCtx=audioCtx||new (window.AudioContext||window.webkitAudioContext)();
+      if(audioCtx.state==='suspended') audioCtx.resume();
+      const len=2*audioCtx.sampleRate;
+      const buffer=audioCtx.createBuffer(1, len, audioCtx.sampleRate);
+      const data=buffer.getChannelData(0);
+      let lastOut=0;
+      for(let i=0;i<len;i++){
+        const white=Math.random()*2-1;
+        if(type==='rain'){ data[i]=white*0.35; }
+        else{ lastOut=(lastOut+0.02*white)/1.02; data[i]=lastOut*3.5; }
+      }
+      const src=audioCtx.createBufferSource();
+      src.buffer=buffer; src.loop=true;
+      const filter=audioCtx.createBiquadFilter();
+      const gain=audioCtx.createGain();
+      if(type==='rain'){ filter.type='lowpass'; filter.frequency.value=1400; gain.gain.value=0.4; }
+      if(type==='waves'){
+        filter.type='lowpass'; filter.frequency.value=500; gain.gain.value=0.5;
+        const lfo=audioCtx.createOscillator();
+        const lfoGain=audioCtx.createGain();
+        lfo.frequency.value=0.12; lfoGain.gain.value=0.3;
+        lfo.connect(lfoGain); lfoGain.connect(gain.gain); lfo.start();
+        soundNodes.push(lfo);
+      }
+      if(type==='fire'){ filter.type='lowpass'; filter.frequency.value=800; gain.gain.value=0.45; }
+      src.connect(filter); filter.connect(gain); gain.connect(audioCtx.destination);
+      src.start();
+      soundNodes.push(src);
+      currentSound=type;
+      btn.classList.add('playing');
+    }catch(e){ alert('مرورگرت از پخش صدا پشتیبانی نمی‌کنه 😅'); }
+  }
 
   function sendReport(mode){
-    const date=new Date().toLocaleDateString('fa-IR', {weekday:'long', day:'numeric', month:'long'});
+    const date=faDate(new Date(), {weekday:'long', day:'numeric', month:'long'});
     let done=[], left=[];
     document.querySelectorAll('#nightList .night-item').forEach(item=>{
       const label=item.querySelector('.n-label').textContent.trim().replace(/\s+/g,' ');
       (item.querySelector('input').checked ? done : left).push(label);
     });
-    const plan=document.getElementById('tomorrowPlan').textContent.trim();
+    const tests=document.getElementById('testsToday').value||0;
+    const mood=getDay(todayKey()).mood||'—';
+    const streak=calcStreak();
     let msg='🌙 گزارش شبانه من\n📅 '+date+'\n\n';
+    msg += '😊 حال امروز: '+mood+' | 🔢 تست: '+tests+' | 🔥 زنجیره: '+streak+' روز\n\n';
     msg += done.length ? '✅ انجام شد:\n'+done.map(t=>'  ✔ '+t).join('\n')+'\n\n' : '';
     msg += left.length ? '⬜ انجام نشد:\n'+left.map(t=>'  ✖ '+t).join('\n')+'\n\n' : '';
-    msg += '🌟 قصد فردا: '+plan+'\n💪 با تشکر؛ مشاور عزیزم';
+    msg += '💪 با تشکر؛ مشاور عزیزم';
+    deliver(mode, msg);
+  }
+  function sendMsg(mode){
+    const text=document.getElementById('msgBox').value.trim();
+    if(!text){ alert('اول پیامت رو بنویس 💌'); return; }
+    deliver(mode, '💌 پیام دانش‌آموز\n\n'+text);
+  }
+  function deliver(mode, msg){
     if(mode==='wa'){ window.open('https://wa.me/?text='+encodeURIComponent(msg)); }
     else if(mode==='tg'){ window.open('https://t.me/share/url?url=&text='+encodeURIComponent(msg)); }
     else{
-      if(navigator.clipboard){ navigator.clipboard.writeText(msg).then(()=>alert('گزارش کپی شد! حالا توی واتساپ یا تلگرام برای مشاورت بفرستش 🌟')); }
+      if(navigator.clipboard){ navigator.clipboard.writeText(msg).then(()=>alert('گزارش کپی شد! حالا برای مشاورت بفرستش 🌟')); }
       else{ alert(msg); }
     }
   }
 
   function tick(){
-    const v = document.getElementById('examDate').value;
+    const v=document.getElementById('examDate').value;
     if(!v) return;
-    const target = new Date(v + 'T08:00:00');
-    const diff = target - new Date();
-    if(diff < 0){ document.getElementById('dDays').textContent = '🎉'; return; }
-    const d = Math.floor(diff/86400000);
-    const h = Math.floor(diff%86400000/3600000);
-    const m = Math.floor(diff%3600000/60000);
-    document.getElementById('dDays').textContent = d;
-    document.getElementById('dHours').textContent = h;
-    document.getElementById('dMins').textContent = m;
+    const target=new Date(v+'T08:00:00');
+    const diff=target-new Date();
+    if(diff<0){ document.getElementById('dDays').textContent='🎉'; return; }
+    document.getElementById('dDays').textContent=Math.floor(diff/86400000);
+    document.getElementById('dHours').textContent=Math.floor(diff%86400000/3600000);
+    document.getElementById('dMins').textContent=Math.floor(diff%3600000/60000);
   }
   setInterval(tick, 30000);
   tick();
+
+  loadState();
+  restoreNight();
+  renderMood();
+  refreshStats();
 </script>
 
 </body>
