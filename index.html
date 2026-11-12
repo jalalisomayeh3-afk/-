@@ -139,6 +139,7 @@
   .f-english{background:#64748b;}
   .f-dini{background:#94a3b8; text-shadow:none;}
   .f-custom{background:#0b132b;}
+  .subj[contenteditable="true"]:empty::before{content:"✍️"; opacity:.5;}
   .slot{
     background:#eef2f7; border:2px dashed #cbd5e1; min-height:44px;
     cursor:text; color:#64748b;
@@ -318,33 +319,6 @@
   }
   .medal.unlocked{animation:tickPop .5s ease; box-shadow:0 6px 16px rgba(20,33,61,.3);}
 
-  .roadmap{position:relative; padding-right:30px;}
-  .roadmap::before{
-    content:""; position:absolute; right:10px; top:10px; bottom:10px;
-    width:5px; border-radius:5px;
-    background:linear-gradient(#2c4a7c,#14213d,#0b132b);
-  }
-  .station{
-    position:relative; margin-bottom:14px;
-    display:flex; align-items:center; gap:12px;
-    background:#f1f4f9; border-radius:16px; padding:14px 18px;
-    transition:transform .2s;
-  }
-  .station:hover{transform:translateX(-6px);}
-  .station::before{
-    content:"📍"; position:absolute; right:-33px; font-size:1.2rem;
-  }
-  .station input[type=checkbox]{
-    appearance:none; width:26px; height:26px; flex-shrink:0;
-    border:3px solid var(--c4); border-radius:8px; cursor:pointer;
-    position:relative; transition:background .2s;
-  }
-  .station input[type=checkbox]:checked{background:var(--c2); border-color:var(--c2);}
-  .station input[type=checkbox]:checked::after{
-    content:"✓"; color:#fff; font-weight:900; position:absolute;
-    top:-2px; right:5px; font-size:1rem;
-  }
-
   .quote-box{
     background:#f1f4f9; border-right:5px solid var(--c1);
     border-radius:16px; padding:22px 24px; text-align:center;
@@ -426,95 +400,144 @@
     <h2><span class="badge">📅</span> برنامه هفتگی من</h2>
     <table>
       <tr>
-        <th>درس</th><th>شنبه</th><th>یکشنبه</th><th>دوشنبه</th>
+        <th>درس / پارت</th><th>شنبه</th><th>یکشنبه</th><th>دوشنبه</th>
         <th>سه‌شنبه</th><th>چهارشنبه</th><th>پنجشنبه</th><th>جمعه</th>
       </tr>
       <tr>
-        <td class="subj f-tarikh">تاریخ 🏛️</td>
+        <td class="subj f-custom" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td>
       </tr>
       <tr>
-        <td class="subj f-joqrafia">جغرافیا 🗺️</td>
+        <td class="subj f-custom" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td>
       </tr>
       <tr>
-        <td class="subj f-ejtemai">جامعه‌شناسی 👥</td>
+        <td class="subj f-custom" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td>
       </tr>
       <tr>
-        <td class="subj f-falsafe">فلسفه و منطق 🤔</td>
+        <td class="subj f-custom" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td>
       </tr>
       <tr>
-        <td class="subj f-farsi">ادبیات 📖</td>
+        <td class="subj f-custom" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td>
       </tr>
       <tr>
-        <td class="subj f-arabi">عربی 🕌</td>
+        <td class="subj f-custom" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td>
       </tr>
       <tr>
-        <td class="subj f-english">زبان 🌍</td>
+        <td class="subj f-custom" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td>
       </tr>
       <tr>
-        <td class="subj f-dini">دینی 📿</td>
+        <td class="subj f-custom" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td>
       </tr>
       <tr>
-        <td class="subj f-custom" contenteditable="true">✍️ اسم درس رو اینجا بنویس</td>
+        <td class="subj f-custom" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td>
       </tr>
       <tr>
-        <td class="subj f-custom" contenteditable="true">✍️ اسم درس رو اینجا بنویس</td>
+        <td class="subj f-custom" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td>
       </tr>
       <tr>
-        <td class="subj f-custom" contenteditable="true">✍️ اسم درس رو اینجا بنویس</td>
+        <td class="subj f-custom" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td>
       </tr>
       <tr>
-        <td class="subj f-custom" contenteditable="true">✍️ اسم درس رو اینجا بنویس</td>
+        <td class="subj f-custom" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td>
       </tr>
       <tr>
-        <td class="subj f-custom" contenteditable="true">✍️ اسم درس رو اینجا بنویس</td>
+        <td class="subj f-custom" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td>
+      </tr>
+      <tr>
+        <td class="subj f-custom" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td>
+      </tr>
+      <tr>
+        <td class="subj f-custom" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td>
+      </tr>
+      <tr>
+        <td class="subj f-custom" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td>
+      </tr>
+      <tr>
+        <td class="subj f-custom" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td>
+      </tr>
+      <tr>
+        <td class="subj f-custom" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td>
+      </tr>
+      <tr>
+        <td class="subj f-custom" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td>
+      </tr>
+      <tr>
+        <td class="subj f-custom" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
@@ -528,20 +551,27 @@
     <h2><span class="badge">📊</span> ثبت ساعت مطالعه و تست هر پارت</h2>
     <table id="logTable">
       <tr><th>درس / پارت</th><th>ساعات مطالعه</th><th>تعداد تست</th></tr>
-      <tr><td class="subj f-tarikh">🏛️ تاریخ</td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
-      <tr><td class="subj f-joqrafia">🗺️ جغرافیا</td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
-      <tr><td class="subj f-ejtemai">👥 جامعه‌شناسی</td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
-      <tr><td class="subj f-falsafe">🤔 فلسفه و منطق</td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
-      <tr><td class="subj f-farsi">📖 ادبیات</td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
-      <tr><td class="subj f-arabi">🕌 عربی</td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
-      <tr><td class="subj f-english">🌍 زبان</td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
-      <tr><td class="subj f-dini">🕏 دینی</td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td style="color:#94a3b8; font-weight:800;">—</td></tr>
-      <tr><td class="subj f-custom" contenteditable="true">✍️ اسم درس/پارت</td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
-      <tr><td class="subj f-custom" contenteditable="true">✍️ اسم درس/پارت</td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
-      <tr><td class="subj f-custom" contenteditable="true">✍️ اسم درس/پارت</td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
-      <tr><td class="subj f-custom" contenteditable="true">✍️ اسم درس/پارت</td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
-      <tr><td class="subj f-custom" contenteditable="true">✍️ اسم درس/پارت</td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
-      <tr class="log-total"><td>جمع کل</td><td><span id="totalHours">0</span> ساعت</td><td><span id="totalTests">0</span> تست</td></tr>
+      <tr><td class="subj f-custom" contenteditable="true"></td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+      <tr><td class="subj f-custom" contenteditable="true"></td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+      <tr><td class="subj f-custom" contenteditable="true"></td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+      <tr><td class="subj f-custom" contenteditable="true"></td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+      <tr><td class="subj f-custom" contenteditable="true"></td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+      <tr><td class="subj f-custom" contenteditable="true"></td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+      <tr><td class="subj f-custom" contenteditable="true"></td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+      <tr><td class="subj f-custom" contenteditable="true"></td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+      <tr><td class="subj f-custom" contenteditable="true"></td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+      <tr><td class="subj f-custom" contenteditable="true"></td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+      <tr><td class="subj f-custom" contenteditable="true"></td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+      <tr><td class="subj f-custom" contenteditable="true"></td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+      <tr><td class="subj f-custom" contenteditable="true"></td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+      <tr><td class="subj f-custom" contenteditable="true"></td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+      <tr><td class="subj f-custom" contenteditable="true"></td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+      <tr><td class="subj f-custom" contenteditable="true"></td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+      <tr><td class="subj f-custom" contenteditable="true"></td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+      <tr><td class="subj f-custom" contenteditable="true"></td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+      <tr><td class="subj f-custom" contenteditable="true"></td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+      <tr><td class="subj f-custom" contenteditable="true"></td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+    <tr class="log-total"><td>جمع کل</td><td><span id="totalHours">0</span> ساعت</td><td><span id="totalTests">0</span> تست</td></tr>
     </table>
     <div class="tip">💡 ساعت مطالعه و تعداد تست هر پارت رو همینجا بنویس — <b>جمع کل خودش حساب می‌شه!</b></div>
   </div>
@@ -617,17 +647,6 @@
   <div class="card">
     <h2><span class="badge">🏅</span> مدال‌های افتخار (خودکار)</h2>
     <div class="medals" id="medalGrid"></div>
-  </div>
-
-  <div class="card">
-    <h2><span class="badge">🗺️</span> نقشه راه تا کنکور</h2>
-    <div class="roadmap">
-      <div class="station"><input type="checkbox"><span contenteditable="true">جمع‌بندی دروس عمومی</span></div>
-      <div class="station"><input type="checkbox"><span contenteditable="true">آزمون‌های جامع مرحله‌ای</span></div>
-      <div class="station"><input type="checkbox"><span contenteditable="true">مرور نهایی قلاب‌ها و نکته‌ها</span></div>
-      <div class="station"><input type="checkbox"><span contenteditable="true">شب کنکور: استراحت و آرامش</span></div>
-      <div class="station"><input type="checkbox"><span contenteditable="true">🏆 روز کنکور — موفق باشی!</span></div>
-    </div>
   </div>
 
   <div class="card">
