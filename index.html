@@ -7,8 +7,8 @@
 <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
 <style>
   :root{
-    --c1:#ff6b9d; --c2:#4ecdc4; --c3:#ffd93d; --c4:#a78bfa; --c5:#ff9f43;
-    --c6:#54a0ff; --bg:#fdf6ff; --ink:#3d3a4e; --card:#ffffff;
+    --c1:#14213d; --c2:#1f3a63; --c3:#e8edf5; --c4:#2c4a7c; --c5:#64748b;
+    --c6:#0b132b; --bg:#f5f7fa; --ink:#10141f; --card:#ffffff;
     --shadow:0 8px 24px rgba(167,139,250,.18);
     --radius:22px;
   }
@@ -21,7 +21,7 @@
   }
   header{
     position:relative;
-    background:linear-gradient(120deg,#ff6b9d,#a78bfa,#4ecdc4,#ffd93d);
+    background:linear-gradient(120deg,#0b132b,#14213d,#1f3a63,#2c4a7c);
     background-size:300% 300%;
     animation:gradientShift 12s ease infinite;
     border-radius:0 0 40px 40px;
@@ -120,11 +120,11 @@
     transition:border-color .3s, background .3s;
     border-radius:6px;
   }
-  [contenteditable="true"]:hover{background:#fff7d6;}
-  [contenteditable="true"]:focus{border-color:var(--c1); background:#fff0f5;}
+  [contenteditable="true"]:hover{background:#e8edf5;}
+  [contenteditable="true"]:focus{border-color:var(--c1); background:#e5eaf2;}
   table{width:100%; border-collapse:separate; border-spacing:6px; text-align:center;}
   th{
-    background:linear-gradient(135deg,#a78bfa,#ff6b9d);
+    background:linear-gradient(135deg,#14213d,#2c4a7c);
     color:#fff; padding:10px 6px; border-radius:12px; font-size:.95rem;
   }
   td{padding:12px 6px; border-radius:12px; font-size:.9rem; transition:transform .2s;}
@@ -133,25 +133,26 @@
     font-weight:700; padding:10px 8px; border-radius:12px; color:#fff;
     text-shadow:1px 1px 2px rgba(0,0,0,.2);
   }
-  .f-arabi{background:#e17055;} .f-farsi{background:#00b894;}
-  .f-tarikh{background:#0984e3;} .f-joqrafia{background:#00cec9;}
-  .f-ejtemai{background:#e84393;} .f-falsafe{background:#6c5ce7;}
-  .f-english{background:#fdcb6e; color:#6b4e00; text-shadow:none;}
-  .f-dini{background:#b2bec3; color:#2d3436; text-shadow:none;}
+  .f-arabi{background:#52709f;} .f-farsi{background:#46608f;}
+  .f-tarikh{background:#14213d;} .f-joqrafia{background:#1f3a63;}
+  .f-ejtemai{background:#2c4a7c;} .f-falsafe{background:#3a5a8f;}
+  .f-english{background:#64748b;}
+  .f-dini{background:#94a3b8; text-shadow:none;}
+  .f-custom{background:#0b132b;}
   .slot{
-    background:#f6f2ff; border:2px dashed #e0d7ff; min-height:44px;
-    cursor:text; color:#9b8fc0;
+    background:#eef2f7; border:2px dashed #cbd5e1; min-height:44px;
+    cursor:text; color:#64748b;
   }
   .slot:empty::before{content:"✏️ بنویس..."; opacity:.55; font-size:.8rem;}
   .timeline{position:relative; padding-right:26px;}
   .timeline::before{
     content:""; position:absolute; right:8px; top:8px; bottom:8px;
     width:4px; border-radius:4px;
-    background:linear-gradient(#ff6b9d,#ffd93d,#4ecdc4);
+    background:linear-gradient(#14213d,#2c4a7c,#64748b);
   }
   .t-item{
     position:relative; margin-bottom:14px;
-    background:#faf7ff; border-radius:16px; padding:12px 18px;
+    background:#f1f4f9; border-radius:16px; padding:12px 18px;
     border-right:0;
     transition:transform .2s;
   }
@@ -163,18 +164,26 @@
     animation:pulse 2s infinite;
   }
   @keyframes pulse{
-    0%,100%{box-shadow:0 0 0 0 rgba(255,107,157,.4)}
-    50%{box-shadow:0 0 0 8px rgba(255,107,157,0)}
+    0%,100%{box-shadow:0 0 0 0 rgba(20,33,61,.4)}
+    50%{box-shadow:0 0 0 8px rgba(20,33,61,0)}
   }
   .t-time{font-weight:800; color:var(--c4); font-size:.85rem;}
   .t-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:12px;}
+  .routine-list{display:grid; gap:10px;}
+  .routine-line{
+    display:flex; align-items:center; gap:12px;
+    background:#f1f4f9; border-radius:12px; padding:12px 16px;
+    transition:transform .2s;
+  }
+  .routine-line:hover{transform:translateX(-4px);}
+  .routine-line .r-emoji{font-size:1.4rem; flex-shrink:0;}
   .goals{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
   .goal{
-    background:#fffbea; border:2px solid #ffe08a; border-radius:16px;
+    background:#f1f4f9; border:2px solid #cbd5e1; border-radius:16px;
     padding:14px; text-align:center;
     transition:transform .2s, box-shadow .2s;
   }
-  .goal:hover{transform:translateY(-4px) rotate(-1deg); box-shadow:0 10px 20px rgba(255,193,7,.25);}
+  .goal:hover{transform:translateY(-4px) rotate(-1deg); box-shadow:0 10px 20px rgba(20,33,61,.25);}
   .goal .emoji{font-size:2rem; display:block; margin-bottom:6px;}
   .goal input[type=checkbox]{
     appearance:none; width:26px; height:26px; border:3px solid var(--c1);
@@ -197,25 +206,25 @@
   }
   .sticker-pack{display:flex; flex-wrap:wrap; gap:10px; justify-content:center;}
   .sticker-pack span{
-    font-size:1.9rem; background:#f6f2ff; border-radius:14px;
+    font-size:1.9rem; background:#eef2f7; border-radius:14px;
     padding:8px 12px; cursor:pointer; transition:transform .2s;
     animation:pop 2.5s ease infinite;
   }
-  .sticker-pack span:hover{transform:scale(1.25) rotate(10deg); background:#fff0f5;}
+  .sticker-pack span:hover{transform:scale(1.25) rotate(10deg); background:#e2e8f0;}
   .sticker-pack span:nth-child(odd){animation-delay:.4s;}
   @keyframes pop{
     0%,100%{transform:scale(1)}
     50%{transform:scale(1.08)}
   }
   .tip{
-    background:linear-gradient(135deg,#fff5f8,#f0fbff);
+    background:#f1f4f9;
     border-right:5px solid var(--c1);
     border-radius:14px; padding:12px 16px; margin-top:14px; font-size:.9rem;
   }
   .night-list{display:grid; grid-template-columns:repeat(2,1fr); gap:12px;}
   .night-item{
     display:flex; align-items:center; gap:12px;
-    background:#f0f4ff; border:2px solid #d6e0ff; border-radius:14px;
+    background:#eef2f7; border:2px solid #cbd5e1; border-radius:14px;
     padding:12px 16px; transition:all .25s;
   }
   .night-item input[type=checkbox]{
@@ -232,7 +241,7 @@
   @keyframes tickPop{
     0%{transform:scale(.8)} 50%{transform:scale(1.25)} 100%{transform:scale(1)}
   }
-  .night-item.done{background:#e6fff7; border-color:var(--c2);}
+  .night-item.done{background:#e5eaf2; border-color:var(--c2);}
   .night-item.done .n-label{opacity:.6; text-decoration:line-through;}
   .send-area{
     display:flex; flex-wrap:wrap; gap:10px; justify-content:center;
@@ -248,8 +257,8 @@
   .send-btn:hover{transform:translateY(-3px) scale(1.03); box-shadow:0 10px 22px rgba(0,0,0,.2);}
   .send-btn:active{transform:scale(.97);}
   .b-wa{background:linear-gradient(135deg,#25d366,#128c7e);}
-  .b-tg{background:linear-gradient(135deg,#54a0ff,#0984e3);}
-  .b-copy{background:linear-gradient(135deg,#a78bfa,#6c5ce7);}
+  .b-tg{background:linear-gradient(135deg,#2c4a7c,#14213d);}
+  .b-copy{background:linear-gradient(135deg,#33415c,#0b132b);}
 
   .streak-chain{display:flex; flex-wrap:wrap; gap:8px; margin:14px 0;}
   .chain-link{
@@ -259,10 +268,10 @@
     font-size:.9rem; color:#bbb;
   }
   .chain-link.on{
-    background:linear-gradient(135deg,#ff6b9d,#ff9f43);
-    border:3px solid #ff6b9d; color:#fff;
+    background:linear-gradient(135deg,#14213d,#2c4a7c);
+    border:3px solid #14213d; color:#fff;
     animation:tickPop .4s ease;
-    box-shadow:0 4px 10px rgba(255,107,157,.4);
+    box-shadow:0 4px 10px rgba(20,33,61,.4);
   }
   #streakTxt{font-size:1.05rem; font-weight:800; color:var(--c1);}
   #compareTxt{margin-top:10px; font-weight:700;}
@@ -271,54 +280,54 @@
   .bar-wrap{flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;}
   .bar{
     width:100%; max-width:64px; border-radius:12px 12px 4px 4px;
-    background:linear-gradient(180deg,#a78bfa,#ff6b9d);
+    background:linear-gradient(180deg,#2c4a7c,#14213d);
     min-height:6px; transition:height .8s ease;
-    box-shadow:0 4px 12px rgba(167,139,250,.35);
+    box-shadow:0 4px 12px rgba(20,33,61,.35);
   }
-  .bar-label{font-size:.8rem; font-weight:700; color:#8a7fb0;}
+  .bar-label{font-size:.8rem; font-weight:700; color:#64748b;}
   .bar-val{font-size:.85rem; font-weight:800; color:var(--c4);}
 
   .mood-row{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:14px;}
   .mood-btn{
-    font-size:2.2rem; background:#f6f2ff; border:3px solid transparent;
+    font-size:2.2rem; background:#eef2f7; border:3px solid transparent;
     border-radius:18px; padding:10px 16px; cursor:pointer;
     transition:all .2s; font-family:inherit;
   }
   .mood-btn:hover{transform:scale(1.12) rotate(-5deg);}
-  .mood-btn.sel{border-color:var(--c1); background:#fff0f5; transform:scale(1.1); box-shadow:0 6px 14px rgba(255,107,157,.3);}
+  .mood-btn.sel{border-color:var(--c1); background:#e5eaf2; transform:scale(1.1); box-shadow:0 6px 14px rgba(20,33,61,.3);}
   .mood-week{display:flex; gap:8px; justify-content:center; flex-wrap:wrap;}
   .mood-day{
-    background:#faf7ff; border-radius:12px; padding:6px 10px;
+    background:#f1f4f9; border-radius:12px; padding:6px 10px;
     font-size:1.3rem; text-align:center; min-width:52px;
   }
-  .mood-day small{display:block; font-size:.65rem; color:#9b8fc0;}
+  .mood-day small{display:block; font-size:.65rem; color:#64748b;}
 
   .medals{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
   .medal{
-    background:#fffbea; border:2px solid #ffe08a; border-radius:16px;
+    background:#f1f4f9; border:2px solid #cbd5e1; border-radius:16px;
     padding:16px; text-align:center; position:relative;
     transition:transform .2s;
   }
   .medal:hover{transform:translateY(-4px);}
   .medal .m-emoji{font-size:2.4rem; display:block;}
   .medal .m-name{font-weight:800; font-size:.85rem; margin-top:6px;}
-  .medal .m-desc{font-size:.72rem; color:#a08c4a; margin-top:2px;}
+  .medal .m-desc{font-size:.72rem; color:#64748b; margin-top:2px;}
   .medal.locked{filter:grayscale(1); opacity:.5;}
   .medal.locked::after{
     content:"🔒"; position:absolute; top:8px; left:10px; font-size:1rem;
   }
-  .medal.unlocked{animation:tickPop .5s ease; box-shadow:0 6px 16px rgba(255,193,7,.3);}
+  .medal.unlocked{animation:tickPop .5s ease; box-shadow:0 6px 16px rgba(20,33,61,.3);}
 
   .roadmap{position:relative; padding-right:30px;}
   .roadmap::before{
     content:""; position:absolute; right:10px; top:10px; bottom:10px;
     width:5px; border-radius:5px;
-    background:linear-gradient(#4ecdc4,#a78bfa,#ff6b9d);
+    background:linear-gradient(#2c4a7c,#14213d,#0b132b);
   }
   .station{
     position:relative; margin-bottom:14px;
     display:flex; align-items:center; gap:12px;
-    background:#faf7ff; border-radius:16px; padding:14px 18px;
+    background:#f1f4f9; border-radius:16px; padding:14px 18px;
     transition:transform .2s;
   }
   .station:hover{transform:translateX(-6px);}
@@ -339,31 +348,31 @@
   .sounds{display:flex; flex-wrap:wrap; gap:12px; justify-content:center;}
   .sound-btn{
     font-family:inherit; font-size:1rem; font-weight:800;
-    background:#f6f2ff; border:3px solid #e0d7ff; border-radius:16px;
+    background:#eef2f7; border:3px solid #cbd5e1; border-radius:16px;
     padding:14px 22px; cursor:pointer; color:var(--ink);
     transition:all .2s;
   }
-  .sound-btn:hover{transform:translateY(-3px); background:#fff0f5;}
+  .sound-btn:hover{transform:translateY(-3px); background:#e2e8f0;}
   .sound-btn.playing{
-    background:linear-gradient(135deg,#4ecdc4,#54a0ff);
+    background:linear-gradient(135deg,#14213d,#2c4a7c);
     color:#fff; border-color:transparent;
     animation:pulse 1.5s infinite;
   }
 
   textarea#msgBox{
     width:100%; min-height:80px; font-family:inherit; font-size:.95rem;
-    border:2px dashed #d9d0f5; border-radius:14px; padding:12px 16px;
-    resize:vertical; background:#fdfcff; color:var(--ink);
+    border:2px dashed #cbd5e1; border-radius:14px; padding:12px 16px;
+    resize:vertical; background:#ffffff; color:var(--ink);
   }
-  textarea#msgBox:focus{outline:none; border-color:var(--c1); background:#fff0f5;}
+  textarea#msgBox:focus{outline:none; border-color:var(--c1); background:#eef2f7;}
 
   .num-input{
-    font-family:inherit; width:90px; border:2px dashed #d9d0f5;
+    font-family:inherit; width:90px; border:2px dashed #cbd5e1;
     border-radius:8px; padding:4px 8px; background:#fff; color:var(--ink);
   }
 
   footer{
-    text-align:center; padding:20px; color:#9b8fc0; font-size:.85rem;
+    text-align:center; padding:20px; color:#64748b; font-size:.85rem;
   }
   @media print{
     body{background:#fff;}
@@ -475,27 +484,56 @@
         <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
         <td class="slot" contenteditable="true"></td>
       </tr>
+      <tr>
+        <td class="subj f-custom" contenteditable="true">✍️ اسم درس رو اینجا بنویس</td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td>
+      </tr>
+      <tr>
+        <td class="subj f-custom" contenteditable="true">✍️ اسم درس رو اینجا بنویس</td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td>
+      </tr>
+      <tr>
+        <td class="subj f-custom" contenteditable="true">✍️ اسم درس رو اینجا بنویس</td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td>
+      </tr>
+      <tr>
+        <td class="subj f-custom" contenteditable="true">✍️ اسم درس رو اینجا بنویس</td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td>
+      </tr>
+      <tr>
+        <td class="subj f-custom" contenteditable="true">✍️ اسم درس رو اینجا بنویس</td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td><td class="slot" contenteditable="true"></td>
+        <td class="slot" contenteditable="true"></td>
+      </tr>
     </table>
     <div class="tip">💡 <b>راهنمای رنگ‌ها:</b> هر درس یه رنگ ثابت داره تا مغز سریع‌تر برنامه رو پردازش کنه. تست‌زنی رو با ⭐ و مرور رو با 🔁 علامت بزن!</div>
   </div>
 
   <div class="card">
-    <h2><span class="badge">⏰</span> روتین روزانه‌ی من</h2>
-    <div class="t-grid">
-      <div class="timeline">
-        <div class="t-item"><span class="t-time">🌅 ۶:۰۰ - ۶:۳۰</span><br>بیداری + <span contenteditable="true">نوشیدن آب و نرمش صبحگاهی</span></div>
-        <div class="t-item"><span class="t-time">📖 ۶:۳۰ - ۸:۰۰</span><br><span contenteditable="true">مرور درس حفظی (تاریخ/ادبیات)</span></div>
-        <div class="t-item"><span class="t-time">🏫 ۸:۰۰ - ۱۳:۰۰</span><br><span contenteditable="true">مدرسه / آموزشگاه</span></div>
-        <div class="t-item"><span class="t-time">😴 ۱۳:۰۰ - ۱۴:۳۰</span><br><span contenteditable="true">ناهار و استراحت</span></div>
-      </div>
-      <div class="timeline">
-        <div class="t-item"><span class="t-time">📖 ۱۵:۰۰ - ۱۷:۰۰</span><br><span contenteditable="true">مطالعه درس عمومی + تست</span></div>
-        <div class="t-item"><span class="t-time">🏛️ ۱۷:۳۰ - ۱۹:۳۰</span><br><span contenteditable="true">مطالعه درس اختصاصی + تست</span></div>
-        <div class="t-item"><span class="t-time">🔁 ۲۰:۰۰ - ۲۱:۰۰</span><br><span contenteditable="true">مرور روزانه + جمع‌بندی</span></div>
-        <div class="t-item"><span class="t-time">🌙 ۲۲:۳۰</span><br><span contenteditable="true">خواب به‌موقع (۷ ساعت کامل!)</span></div>
-      </div>
+    <h2><span class="badge">🔁</span> روتین‌های من</h2>
+    <div class="routine-list">
+      <div class="routine-line"><span class="r-emoji">🌅</span><span contenteditable="true">روتین صبح رو اینجا بنویس...</span></div>
+      <div class="routine-line"><span class="r-emoji">📖</span><span contenteditable="true">روتین مطالعه‌ات رو اینجا بنویس...</span></div>
+      <div class="routine-line"><span class="r-emoji">🏫</span><span contenteditable="true">روتین مدرسه یا آموزشگاه...</span></div>
+      <div class="routine-line"><span class="r-emoji">📝</span><span contenteditable="true">روتین تست‌زنی...</span></div>
+      <div class="routine-line"><span class="r-emoji">🌙</span><span contenteditable="true">روتین شب قبل از خواب...</span></div>
+      <div class="routine-line"><span class="r-emoji">➕</span><span contenteditable="true">هر روتین دیگه‌ای که داری اینجا اضافه کن...</span></div>
     </div>
-    <div class="tip">🌟 قصد روزانه‌ام: <span contenteditable="true">امروز روی هدف اصلی‌ام تمرکز می‌کنم و تسلیم نمیشم!</span></div>
+    <div class="tip">💡 روتین یعنی کارهایی که <b>هر روز</b> تکرار می‌کنی — بدون ساعت مشخص! هر خط رو خودت پر کن.</div>
   </div>
 
   <div class="card">
@@ -590,12 +628,12 @@
   <div class="card">
     <h2><span class="badge">🎨</span> پالت‌های رنگی پیشنهادی</h2>
     <div class="palettes">
-      <div class="palette"><div class="swatches"><span style="background:#ff6b9d"></span><span style="background:#ffd93d"></span><span style="background:#4ecdc4"></span><span style="background:#a78bfa"></span></div><div class="name">شادی و انرژی 🌈</div></div>
-      <div class="palette"><div class="swatches"><span style="background:#0984e3"></span><span style="background:#74b9ff"></span><span style="background:#a29bfe"></span><span style="background:#dfe6e9"></span></div><div class="name">آرامش آبی 💙</div></div>
-      <div class="palette"><div class="swatches"><span style="background:#00b894"></span><span style="background:#55efc4"></span><span style="background:#ffeaa7"></span><span style="background:#fab1a0"></span></div><div class="name">تمرکز سبز 🌿</div></div>
-      <div class="palette"><div class="swatches"><span style="background:#e17055"></span><span style="background:#fdcb6e"></span><span style="background:#e84393"></span><span style="background:#2d3436"></span></div><div class="name">انگیزه آتشین 🔥</div></div>
+      <div class="palette"><div class="swatches"><span style="background:#0b132b"></span><span style="background:#14213d"></span><span style="background:#1f3a63"></span><span style="background:#2c4a7c"></span></div><div class="name">سرمه‌ای کلاسیک 📘</div></div>
+      <div class="palette"><div class="swatches"><span style="background:#ffffff; border:1px solid #ddd"></span><span style="background:#e5e7eb"></span><span style="background:#6b7280"></span><span style="background:#111827"></span></div><div class="name">مشکی و سفید ⚫⚪</div></div>
+      <div class="palette"><div class="swatches"><span style="background:#1e3a5f"></span><span style="background:#27496d"></span><span style="background:#5b8bbf"></span><span style="background:#dfe8f2"></span></div><div class="name">آبی اداری 💼</div></div>
+      <div class="palette"><div class="swatches"><span style="background:#f8f9fa; border:1px solid #ddd"></span><span style="background:#dee2e6"></span><span style="background:#adb5bd"></span><span style="background:#343a40"></span></div><div class="name">خاکستری مینیمال 🪙</div></div>
     </div>
-    <div class="tip">📌 <b>نکته روانشناسی رنگ:</b> آبی و سبز برای تمرکز مطالعه، زرد و نارنجی برای انگیزه، صورتی و بنفش برای خلاقیت. رنگ هر درس رو ثابت نگه دار!</div>
+    <div class="tip">📌 <b>نکته:</b> سرمه‌ای و آبی تیره برای تمرکز مطالعه عالیه، خاکستری برای آرامش ذهن. رنگ هر درس رو ثابت نگه دار تا برنامه مرتب و جدی بمونه!</div>
   </div>
 
   <div class="card">
