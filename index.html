@@ -370,6 +370,14 @@
     font-family:inherit; width:90px; border:2px dashed #cbd5e1;
     border-radius:8px; padding:4px 8px; background:#fff; color:var(--ink);
   }
+  .log-in{
+    font-family:inherit; width:80px; border:2px dashed #cbd5e1;
+    border-radius:8px; padding:6px 8px; background:#fff; color:var(--ink);
+    text-align:center; font-size:1rem;
+  }
+  .log-in:focus{outline:none; border-color:var(--c1); background:#eef2f7;}
+  .log-total td{background:#14213d; color:#fff; font-weight:800; font-size:1rem;}
+  .log-total span{font-size:1.1rem; color:#ffd93d;}
 
   footer{
     text-align:center; padding:20px; color:#64748b; font-size:.85rem;
@@ -524,6 +532,28 @@
   </div>
 
   <div class="card">
+    <h2><span class="badge">📊</span> ثبت ساعت مطالعه و تست هر پارت</h2>
+    <table id="logTable">
+      <tr><th>درس / پارت</th><th>ساعات مطالعه</th><th>تعداد تست</th></tr>
+      <tr><td class="subj f-tarikh">🏛️ تاریخ</td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+      <tr><td class="subj f-joqrafia">🗺️ جغرافیا</td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+      <tr><td class="subj f-ejtemai">👥 جامعه‌شناسی</td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+      <tr><td class="subj f-falsafe">🤔 فلسفه و منطق</td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+      <tr><td class="subj f-farsi">📖 ادبیات</td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+      <tr><td class="subj f-arabi">🕌 عربی</td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+      <tr><td class="subj f-english">🌍 زبان</td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+      <tr><td class="subj f-dini">🕏 دینی</td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+      <tr><td class="subj f-custom" contenteditable="true">✍️ اسم درس/پارت</td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+      <tr><td class="subj f-custom" contenteditable="true">✍️ اسم درس/پارت</td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+      <tr><td class="subj f-custom" contenteditable="true">✍️ اسم درس/پارت</td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+      <tr><td class="subj f-custom" contenteditable="true">✍️ اسم درس/پارت</td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+      <tr><td class="subj f-custom" contenteditable="true">✍️ اسم درس/پارت</td><td><input type="number" class="log-in" min="0" step="0.5" value="0"></td><td><input type="number" class="log-in" min="0" value="0"></td></tr>
+      <tr class="log-total"><td>جمع کل</td><td><span id="totalHours">0</span> ساعت</td><td><span id="totalTests">0</span> تست</td></tr>
+    </table>
+    <div class="tip">💡 ساعت مطالعه و تعداد تست هر پارت رو همینجا بنویس — <b>جمع کل خودش حساب می‌شه!</b></div>
+  </div>
+
+  <div class="card">
     <h2><span class="badge">🔁</span> روتین‌های من</h2>
     <div class="routine-list">
       <div class="routine-line"><span class="r-emoji">🌅</span><span contenteditable="true">روتین صبح رو اینجا بنویس...</span></div>
@@ -670,11 +700,15 @@
   const KEY='konkur-planner-v2';
   function saveState(){
     try{
-      const data={text:{},checks:{}};
+      const data={text:{},checks:{},nums:{}};
       document.querySelectorAll('[contenteditable="true"]').forEach((el,i)=>data.text[i]=el.innerHTML);
       document.querySelectorAll('input[type=checkbox]').forEach((el,i)=>{
         if(el.closest('#nightList')) return;
         data.checks[i]=el.checked;
+      });
+      document.querySelectorAll('input[type=number]').forEach((el,i)=>{
+        if(el.id==='testsToday') return;
+        data.nums[i]=el.value;
       });
       localStorage.setItem(KEY, JSON.stringify(data));
     }catch(e){}
@@ -688,6 +722,10 @@
       document.querySelectorAll('input[type=checkbox]').forEach((el,i)=>{
         if(el.closest('#nightList')) return;
         if(data.checks[i]!==undefined) el.checked=data.checks[i];
+      });
+      document.querySelectorAll('input[type=number]').forEach((el,i)=>{
+        if(el.id==='testsToday') return;
+        if(data.nums && data.nums[i]!==undefined) el.value=data.nums[i];
       });
     }catch(e){}
   }
@@ -721,6 +759,18 @@
     saveState();
   });
   document.addEventListener('input', saveState);
+  document.addEventListener('input', function(e){
+    if(e.target.classList && e.target.classList.contains('log-in')) calcLog();
+  });
+  function calcLog(){
+    let h=0, t=0;
+    document.querySelectorAll('#logTable tr').forEach(function(row){
+      const ins=row.querySelectorAll('input[type=number]');
+      if(ins.length===2){ h+=parseFloat(ins[0].value)||0; t+=parseInt(ins[1].value)||0; }
+    });
+    document.getElementById('totalHours').textContent=h;
+    document.getElementById('totalTests').textContent=t;
+  }
 
   function weekStart(d){
     const diff=(d.getDay()+1)%7;
@@ -951,6 +1001,7 @@
   restoreNight();
   renderMood();
   refreshStats();
+  calcLog();
 </script>
 
 </body>
