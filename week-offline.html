@@ -50,13 +50,21 @@ body{font-family:'VazirB',Tahoma,sans-serif;background:#0b132b;min-height:100vh;
 .midstk{text-align:center;font-size:17px;margin-top:12px;letter-spacing:4px;}
 .rbox{position:relative;}
 .rbox:before{content:'\1F380';position:absolute;top:-16px;right:12px;font-size:24px;transform:rotate(-10deg);z-index:2;}
-@page{size:90mm 160mm;margin:0;}
+.daypills{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin:14px 2px 4px;}
+.daypills span{font-size:10.5px;font-weight:bold;padding:3px 9px;border-radius:10px;}
+.mission{margin-top:12px;background:#fff;border:2px dashed var(--acc,#ffc800);border-radius:12px;padding:8px 10px;text-align:center;font-size:13.5px;color:#000;line-height:1.7;}
+.mission b{color:var(--acc,#14213d);}
+.wstars{display:flex;justify-content:center;gap:7px;margin-top:10px;font-size:19px;}
+.wstars .on{transform:scale(1.3);}
+.foot{text-align:center;font-size:11px;color:#98a2b3;margin-top:10px;}
+@page{size:90mm 205mm;margin:0;}
 @media print{
  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
  body{background:#fff;padding:0;}
- .wrap{max-width:90mm;}
+ .wrap{max-width:none;}
  .tabs,.tools,.hint,.saved{display:none !important;}
- .page{display:block !important;box-shadow:none;border-radius:0;margin:0 0 0 0;page-break-after:always;}
+ .page{display:block !important;box-shadow:none;border-radius:0;margin:0;page-break-after:always;zoom:.65;width:138mm;height:314mm;}
+ .page:last-child{page-break-after:auto;}
 }
 </style>
 </head>
@@ -75,6 +83,8 @@ var TB=["#111111","#111111","#ffffff","#ffffff","#ffffff","#111111","#ffc800"];
 var TINT=["#ffe9f3","#fff8d6","#ffe3e3","#e2f6e9","#f2e7d9","#ffedd9","#ececec"];
 var DOT=["rgba(255,79,154,.16)","rgba(255,200,0,.20)","rgba(224,32,32,.12)","rgba(47,174,95,.14)","rgba(139,90,43,.14)","rgba(255,122,26,.15)","rgba(17,17,17,.08)"];
 var MID=["💪","📚","🧠","✍🏻","🎯","⭐","🌙"];
+var FUN=["🥤","🍭","🍫","🎧","⚽","🎮","🧸"];
+var MISS=["بعد از هر درس، ۵ تا آب بخور 💧","یه آهنگ خوب بعد از مطالعه گوش بده 🎵","به خودت یه تشویق بکن، تو عالی‌ای 👏","امروز زودتر بخواب، قهرمان‌ها می‌خوابن 😴","یه خوراکی خوشمزه وسط مطالعه بخور 🍫","به یه دوستت بگو چقدر پیشرفت کردی 📞","امروز تفریح کن، استراحت هم جزو برنامه‌ست! 🎈"];
 var Q7=["شروع قوی، پایان قوی","هر خط، یک قدم به هدفت","تمرکز یعنی قدرت","امروز مال توئه","قهرمان‌ها تمرین می‌کنند","سخت بگیر، درخشان شو","استراحت هم جزو برنامه‌ست!"];
 var KEY="weekplanner-v1";
 var DB=JSON.parse(localStorage.getItem(KEY)||"{}");
@@ -100,6 +110,7 @@ function build(tab){
   p.style.setProperty("--tint",TINT[tab]);p.style.setProperty("--dot",DOT[tab]);
   stk("⭐","top:6px;right:10px;font-size:26px;transform:rotate(-14deg);");
   stk("✨","top:12px;left:12px;font-size:20px;");
+  stk(FUN[tab],"bottom:10px;left:12px;font-size:24px;transform:rotate(-10deg);");
  }
  if(tab===-1){
   p.innerHTML='<div class="cover"><div class="medal">🏅</div><h1>برنامه‌ی هفتگی</h1><div class="sub">قهرمانانه ✨</div></div>';
@@ -110,6 +121,9 @@ function build(tab){
   var l2=document.createElement("label");l2.textContent="هدف:";
   cr2.appendChild(l2);cr2.appendChild(inp(val(DB,"goal"),function(x){DB.goal=x;save();},"هدف این هفته"));
   p.appendChild(cr1);p.appendChild(cr2);
+    var dp=document.createElement("div");dp.className="daypills";
+  for(let i7=0;i7<7;i7++){var sp=document.createElement("span");sp.textContent=DAYS[i7];sp.style.background=ACC[i7];sp.style.color=TB[i7];dp.appendChild(sp);}
+  p.appendChild(dp);
   var ms=document.createElement("div");ms.className="midstk";ms.textContent="✨ 👑 قهرمان این هفته تو هستی ✨";p.appendChild(ms);
   var h=document.createElement("div");h.className="hint";
   h.innerHTML="این صفحه همیشه بدون اینترنت کار می‌کند 📴<br>هر چی بنویسی خودش ذخیره می‌شود ✓<br>برای فرستادن به دانش‌آموز: دکمه «ذخیره PDF» رو بزن 📄 و توی چاپگر، «Save as PDF» رو انتخاب کن";
@@ -148,6 +162,12 @@ function build(tab){
    rb.appendChild(rl);
   }
   p.appendChild(rb);
+    var wb=document.createElement("div");wb.className="mission";wb.style.setProperty("--acc",ACC[tab]);
+  wb.innerHTML="<b>🎯 ماموریت ویژه امروز:</b> "+MISS[tab];
+  p.appendChild(wb);
+  var ws=document.createElement("div");ws.className="wstars";ws.style.setProperty("--acc",ACC[tab]);
+  for(let i8=0;i8<7;i8++){var ss=document.createElement("span");ss.textContent="⭐";if(i8===tab){ss.className="on";}else{ss.style.opacity=".22";}ws.appendChild(ss);}
+  p.appendChild(ws);
   var ms=document.createElement("div");ms.className="midstk";ms.textContent="🌟 "+MID[tab]+" 🌟";p.appendChild(ms);
   var q=document.createElement("div");q.className="quote";
   q.style.setProperty("--qb",QB[tab]);q.style.setProperty("--qt",QT[tab]);
@@ -160,6 +180,7 @@ function build(tab){
   });
   tl.appendChild(cb);p.appendChild(tl);
  }
+ var ft=document.createElement("div");ft.className="foot";ft.textContent="با ❤️ از مشاورت 💖";p.appendChild(ft);
  return p;
 }
 var tabsEl=document.getElementById("tabs");
