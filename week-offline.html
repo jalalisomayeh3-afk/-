@@ -43,6 +43,13 @@ body{font-family:'VazirB',Tahoma,sans-serif;background:#0b132b;min-height:100vh;
 .saved.show{opacity:1;}
 .tools{text-align:center;margin-top:12px;}
 .tools button{font-family:inherit;font-size:12.5px;background:#fff;color:#d91a32;border:1.5px solid #d91a32;border-radius:18px;padding:6px 14px;cursor:pointer;}
+@page{size:90mm 160mm;margin:0;}
+@media print{
+ body{background:#fff;padding:0;}
+ .wrap{max-width:90mm;}
+ .tabs,.tools,.hint,.saved{display:none !important;}
+ .page{display:block !important;box-shadow:none;border-radius:0;margin:0 0 0 0;page-break-after:always;}
+}
 </style>
 </head>
 <body>
@@ -72,8 +79,7 @@ function inp(v,cb,ph){
  i.addEventListener("input",function(){cb(i.value);});
  return i;
 }
-function render(tab){
- var v=document.getElementById("view");v.innerHTML="";
+function build(tab){
  var p=document.createElement("div");p.className="page";
  if(tab===-1){
   p.innerHTML='<div class="cover"><div class="medal">🏅</div><h1>برنامه‌ی هفتگی</h1><div class="sub">قهرمانانه ✨</div></div>';
@@ -85,7 +91,7 @@ function render(tab){
   cr2.appendChild(l2);cr2.appendChild(inp(val(DB,"goal"),function(x){DB.goal=x;save();},"هدف این هفته"));
   p.appendChild(cr1);p.appendChild(cr2);
   var h=document.createElement("div");h.className="hint";
-  h.innerHTML="این صفحه همیشه بدون اینترنت کار می‌کند 📴<br>هر چی بنویسی خودش ذخیره می‌شود ✓<br>برای فرستادن به دانش‌آموز، از صفحه عکس بگیر 📸";
+  h.innerHTML="این صفحه همیشه بدون اینترنت کار می‌کند 📴<br>هر چی بنویسی خودش ذخیره می‌شود ✓<br>برای فرستادن به دانش‌آموز: دکمه «ذخیره PDF» رو بزن 📄 و توی چاپگر، «Save as PDF» رو انتخاب کن";
   p.appendChild(h);
  }else{
   var d=DB.days[tab]=DB.days[tab]||{les:["","","","","","","",""],tim:["","","","","","","",""],rut:["","",""]};
@@ -93,7 +99,7 @@ function render(tab){
   b.innerHTML='<h1>'+DAYS[tab]+'</h1><div class="sub">برنامه‌ی روز</div>';
   p.appendChild(b);
   var g=document.createElement("div");g.className="grid";
-  for(var i=0;i<8;i++){
+  for(let i=0;i<8;i++){
    var cell=document.createElement("div");cell.className="cell";
    var ci=document.createElement("div");ci.className="circ";ci.style.setProperty("--acc",ACC[tab]);
    var num=document.createElement("div");num.className="num";num.textContent=["۱","۲","۳","۴","۵","۶","۷","۸"][i];
@@ -111,7 +117,7 @@ function render(tab){
   sec.textContent="روتین‌های امروز";
   p.appendChild(sec);
   var rb=document.createElement("div");rb.className="rbox";rb.style.setProperty("--acc",ACC[tab]);
-  for(var j=0;j<3;j++){
+  for(let j=0;j<3;j++){
    var rl=document.createElement("div");rl.className="rline";
    var hh=document.createElement("span");hh.className="h";hh.textContent="❤";
    rl.appendChild(hh);
@@ -126,11 +132,11 @@ function render(tab){
   var tl=document.createElement("div");tl.className="tools";
   var cb=document.createElement("button");cb.textContent="پاک کردن این روز";
   cb.addEventListener("click",function(){
-   if(confirm("همه‌ی نوشته‌های "+DAYS[tab]+" پاک شود؟")){DB.days[tab]={les:["","","","","","","",""],tim:["","","","","","","",""],rut:["","",""]};save();render(tab);}
+   if(confirm("همه‌ی نوشته‌های "+DAYS[tab]+" پاک شود؟")){DB.days[tab]={les:["","","","","","","",""],tim:["","","","","","","",""],rut:["","",""]};save();var np=build(tab);pages[tab].replaceWith(np);pages[tab]=np;}
   });
   tl.appendChild(cb);p.appendChild(tl);
  }
- v.appendChild(p);
+ return p;
 }
 var tabsEl=document.getElementById("tabs");
 var labels=["جلد"].concat(DAYS);
@@ -141,12 +147,18 @@ labels.forEach(function(lb,idx){
  b.addEventListener("click",function(){
   cur=real;
   document.querySelectorAll(".tabs button").forEach(function(x){x.classList.remove("on");});
-  b.classList.add("on");render(real);
+  b.classList.add("on");show(real);
  });
  tabsEl.appendChild(b);
 });
 tabsEl.firstChild.classList.add("on");
-render(-1);
+var pb=document.createElement("button");pb.textContent="ذخیره PDF \ud83d\udcc4";
+pb.addEventListener("click",function(){window.print();});
+tabsEl.appendChild(pb);
+var view=document.getElementById("view");var pages={};
+for(var t=-1;t<DAYS.length;t++){pages[t]=build(t);view.appendChild(pages[t]);}
+function show(tab){cur=tab;for(var k in pages){pages[k].style.display=(k==tab)?"block":"none";}}
+show(-1);
 </script>
 </body>
 </html>
