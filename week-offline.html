@@ -43,8 +43,16 @@ body{font-family:'VazirB',Tahoma,sans-serif;background:#0b132b;min-height:100vh;
 .saved.show{opacity:1;}
 .tools{text-align:center;margin-top:12px;}
 .tools button{font-family:inherit;font-size:12.5px;background:#fff;color:#d91a32;border:1.5px solid #d91a32;border-radius:18px;padding:6px 14px;cursor:pointer;}
+.page{position:relative;overflow:hidden;background:linear-gradient(180deg,#ffffff,var(--tint,#fff));}
+.page:before{content:'';position:absolute;inset:0;background-image:radial-gradient(var(--dot,rgba(20,33,61,.08)) 1.5px,transparent 1.5px);background-size:22px 22px;pointer-events:none;}
+.page>*{position:relative;z-index:1;}
+.stk{position:absolute;pointer-events:none;z-index:2;}
+.midstk{text-align:center;font-size:17px;margin-top:12px;letter-spacing:4px;}
+.rbox{position:relative;}
+.rbox:before{content:'\1F380';position:absolute;top:-16px;right:12px;font-size:24px;transform:rotate(-10deg);z-index:2;}
 @page{size:90mm 160mm;margin:0;}
 @media print{
+ *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
  body{background:#fff;padding:0;}
  .wrap{max-width:90mm;}
  .tabs,.tools,.hint,.saved{display:none !important;}
@@ -64,6 +72,9 @@ var ACC=["#ff4f9a","#ffc800","#e02020","#2fae5f","#8b5a2b","#ff7a1a","#111111"];
 var QB=["#ff4f9a","#ffc800","#e02020","#2fae5f","#8b5a2b","#ff7a1a","#111111"];
 var QT=["#111111","#111111","#ffffff","#ffffff","#ffffff","#111111","#ffc800"];
 var TB=["#111111","#111111","#ffffff","#ffffff","#ffffff","#111111","#ffc800"];
+var TINT=["#ffe9f3","#fff8d6","#ffe3e3","#e2f6e9","#f2e7d9","#ffedd9","#ececec"];
+var DOT=["rgba(255,79,154,.16)","rgba(255,200,0,.20)","rgba(224,32,32,.12)","rgba(47,174,95,.14)","rgba(139,90,43,.14)","rgba(255,122,26,.15)","rgba(17,17,17,.08)"];
+var MID=["💪","📚","🧠","✍🏻","🎯","⭐","🌙"];
 var Q7=["شروع قوی، پایان قوی","هر خط، یک قدم به هدفت","تمرکز یعنی قدرت","امروز مال توئه","قهرمان‌ها تمرین می‌کنند","سخت بگیر، درخشان شو","استراحت هم جزو برنامه‌ست!"];
 var KEY="weekplanner-v1";
 var DB=JSON.parse(localStorage.getItem(KEY)||"{}");
@@ -82,6 +93,14 @@ function inp(v,cb,ph){
 }
 function build(tab){
  var p=document.createElement("div");p.className="page";
+ function stk(e,st){var s=document.createElement("div");s.className="stk";s.textContent=e;s.style.cssText=st;p.appendChild(s);}
+ if(tab===-1){
+  p.style.setProperty("--tint","#fff7dc");p.style.setProperty("--dot","rgba(184,134,11,.12)");
+ }else{
+  p.style.setProperty("--tint",TINT[tab]);p.style.setProperty("--dot",DOT[tab]);
+  stk("⭐","top:6px;right:10px;font-size:26px;transform:rotate(-14deg);");
+  stk("✨","top:12px;left:12px;font-size:20px;");
+ }
  if(tab===-1){
   p.innerHTML='<div class="cover"><div class="medal">🏅</div><h1>برنامه‌ی هفتگی</h1><div class="sub">قهرمانانه ✨</div></div>';
   var cr1=document.createElement("div");cr1.className="covrow";
@@ -91,9 +110,12 @@ function build(tab){
   var l2=document.createElement("label");l2.textContent="هدف:";
   cr2.appendChild(l2);cr2.appendChild(inp(val(DB,"goal"),function(x){DB.goal=x;save();},"هدف این هفته"));
   p.appendChild(cr1);p.appendChild(cr2);
+  var ms=document.createElement("div");ms.className="midstk";ms.textContent="✨ 👑 قهرمان این هفته تو هستی ✨";p.appendChild(ms);
   var h=document.createElement("div");h.className="hint";
   h.innerHTML="این صفحه همیشه بدون اینترنت کار می‌کند 📴<br>هر چی بنویسی خودش ذخیره می‌شود ✓<br>برای فرستادن به دانش‌آموز: دکمه «ذخیره PDF» رو بزن 📄 و توی چاپگر، «Save as PDF» رو انتخاب کن";
   p.appendChild(h);
+  stk("🎓","top:6px;right:10px;font-size:30px;transform:rotate(8deg);");
+  stk("⭐","top:8px;left:12px;font-size:22px;transform:rotate(-14deg);");
  }else{
   var d=DB.days[tab]=DB.days[tab]||{les:["","","","","","","",""],tim:["","","","","","","",""],rut:["","",""]};
   var b=document.createElement("div");b.className="band";b.style.setProperty("--acc",ACC[tab]);b.style.setProperty("--tb",TB[tab]);
@@ -126,6 +148,7 @@ function build(tab){
    rb.appendChild(rl);
   }
   p.appendChild(rb);
+  var ms=document.createElement("div");ms.className="midstk";ms.textContent="🌟 "+MID[tab]+" 🌟";p.appendChild(ms);
   var q=document.createElement("div");q.className="quote";
   q.style.setProperty("--qb",QB[tab]);q.style.setProperty("--qt",QT[tab]);
   q.textContent="« "+Q7[tab]+" »";
