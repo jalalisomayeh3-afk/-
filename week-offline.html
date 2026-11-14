@@ -13,24 +13,24 @@ body{font-family:'VazirB',Tahoma,sans-serif;background:#0b132b;min-height:100vh;
 .tabs button{font-family:inherit;font-size:13px;font-weight:bold;padding:8px 12px;border:2px solid #ffd93d;background:#1f3a63;color:#fdf1d7;border-radius:20px;cursor:pointer;}
 .tabs button.on{background:#ffd93d;color:#14213d;}
 .page{background:#fff;border-radius:18px;padding:16px 14px;box-shadow:0 8px 30px rgba(0,0,0,.45);}
-.band{background:linear-gradient(90deg,#14213d,#1f3a63);color:#fff;border-radius:12px;padding:14px 12px;text-align:center;position:relative;margin-bottom:14px;overflow:hidden;}
-.band:after{content:'';position:absolute;right:0;left:0;bottom:0;height:3px;background:#ffd93d;}
+.band{background:linear-gradient(90deg,var(--acc,#14213d),var(--acc,#1f3a63));color:var(--tb,#fff);border-radius:12px;padding:14px 12px;text-align:center;position:relative;margin-bottom:14px;overflow:hidden;}
+.band:after{content:'';position:absolute;right:0;left:0;bottom:0;height:3px;background:#fff;opacity:.85;}
 .band h1{font-size:22px;}
-.band .sub{color:#ffd93d;font-size:13px;margin-top:4px;}
+.band .sub{color:var(--tb,#fff);opacity:.85;font-size:13px;margin-top:4px;}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 8px;}
 .cell{text-align:center;}
-.circ{width:100%;max-width:150px;height:110px;margin:0 auto;border:3px solid #14213d;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;background:#fff;}
+.circ{width:100%;max-width:158px;height:120px;margin:0 auto;border:3.5px solid var(--acc,#14213d);border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;background:#fff;}
 .circ:before{content:'';position:absolute;inset:6px;border:1.5px dashed var(--acc,#ffc800);border-radius:50%;}
-.circ .num{position:absolute;top:2px;left:6px;width:20px;height:20px;background:var(--acc,#ffc800);color:#14213d;border-radius:50%;font-size:11px;line-height:20px;}
-.circ input{width:82%;border:none;background:transparent;font-family:inherit;font-weight:bold;color:#000;font-size:13.5px;text-align:center;outline:none;}
+.circ .num{position:absolute;top:2px;left:6px;width:22px;height:22px;background:var(--acc,#ffc800);color:var(--tb,#14213d);border-radius:50%;font-size:12px;line-height:22px;}
+.circ input{width:82%;border:none;background:transparent;font-family:inherit;font-weight:bold;color:#000;font-size:14.5px;text-align:center;outline:none;}
 .trow{margin-top:3px;font-size:12px;display:flex;align-items:center;justify-content:center;gap:4px;}
 .trow input{width:86px;border:none;border-bottom:1.5px dashed #b8c2d4;background:transparent;font-family:inherit;font-weight:bold;color:#000;font-size:12.5px;text-align:center;outline:none;}
-.sec{background:#1f3a63;color:#fff;border-radius:8px;padding:8px 12px;font-size:15px;margin:16px 0 8px;border-right:6px solid var(--acc,#ffc800);}
+.sec{background:var(--acc,#1f3a63);color:var(--tb,#fff);border-radius:8px;padding:8px 12px;font-size:15px;margin:16px 0 8px;border-right:6px solid var(--acc,#ffc800);}
 .rbox{border:2px solid var(--acc,#ffc800);border-radius:12px;padding:12px 12px 8px;}
 .rline{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
 .rline .h{color:#ff6b6b;font-size:15px;}
 .rline input{flex:1;border:none;border-bottom:1.5px dashed #b8c2d4;background:transparent;font-family:inherit;font-weight:bold;color:#000;font-size:14px;outline:none;padding:4px 2px;}
-.quote{margin-top:16px;background:var(--qb,#ffc800);color:var(--qt,#000);border:2px solid #ffd93d;border-radius:12px;padding:10px;text-align:center;font-size:14px;}
+.quote{margin-top:16px;background:var(--qb,#ffc800);color:var(--qt,#000);border:2px solid var(--qb,#ffd93d);border-radius:12px;padding:10px;text-align:center;font-size:14px;}
 .cover{text-align:center;padding:10px 4px;}
 .cover .medal{font-size:44px;}
 .cover h1{color:#14213d;font-size:26px;margin:6px 0 2px;}
@@ -60,9 +60,10 @@ body{font-family:'VazirB',Tahoma,sans-serif;background:#0b132b;min-height:100vh;
 <div class="saved" id="saved">ذخیره شد ✓</div>
 <script>
 var DAYS=["شنبه","یکشنبه","دوشنبه","سه‌شنبه","چهارشنبه","پنجشنبه","جمعه"];
-var ACC=["#ffc800","#d91a32","#14213d","#000000","#ffc800","#d91a32","#f3e3b3"];
-var QB=["#ffc800","#d91a32","#14213d","#000000","#ffc800","#d91a32","#f3e3b3"];
-var QT=["#000000","#ffffff","#fdf1d7","#ffc800","#000000","#ffffff","#14213d"];
+var ACC=["#ff4f9a","#ffc800","#e02020","#2fae5f","#8b5a2b","#ff7a1a","#111111"];
+var QB=["#ff4f9a","#ffc800","#e02020","#2fae5f","#8b5a2b","#ff7a1a","#111111"];
+var QT=["#111111","#111111","#ffffff","#ffffff","#ffffff","#111111","#ffc800"];
+var TB=["#111111","#111111","#ffffff","#ffffff","#ffffff","#111111","#ffc800"];
 var Q7=["شروع قوی، پایان قوی","هر خط، یک قدم به هدفت","تمرکز یعنی قدرت","امروز مال توئه","قهرمان‌ها تمرین می‌کنند","سخت بگیر، درخشان شو","استراحت هم جزو برنامه‌ست!"];
 var KEY="weekplanner-v1";
 var DB=JSON.parse(localStorage.getItem(KEY)||"{}");
@@ -95,13 +96,13 @@ function build(tab){
   p.appendChild(h);
  }else{
   var d=DB.days[tab]=DB.days[tab]||{les:["","","","","","","",""],tim:["","","","","","","",""],rut:["","",""]};
-  var b=document.createElement("div");b.className="band";
+  var b=document.createElement("div");b.className="band";b.style.setProperty("--acc",ACC[tab]);b.style.setProperty("--tb",TB[tab]);
   b.innerHTML='<h1>'+DAYS[tab]+'</h1><div class="sub">برنامه‌ی روز</div>';
   p.appendChild(b);
   var g=document.createElement("div");g.className="grid";
   for(let i=0;i<8;i++){
    var cell=document.createElement("div");cell.className="cell";
-   var ci=document.createElement("div");ci.className="circ";ci.style.setProperty("--acc",ACC[tab]);
+   var ci=document.createElement("div");ci.className="circ";ci.style.setProperty("--acc",ACC[tab]);ci.style.setProperty("--tb",TB[tab]);
    var num=document.createElement("div");num.className="num";num.textContent=["۱","۲","۳","۴","۵","۶","۷","۸"][i];
    ci.appendChild(num);
    ci.appendChild(inp(val(d.les,i),function(x){d.les[i]=x;save();},"درس..."));
@@ -113,7 +114,7 @@ function build(tab){
    g.appendChild(cell);
   }
   p.appendChild(g);
-  var sec=document.createElement("div");sec.className="sec";sec.style.setProperty("--acc",ACC[tab]);
+  var sec=document.createElement("div");sec.className="sec";sec.style.setProperty("--acc",ACC[tab]);sec.style.setProperty("--tb",TB[tab]);
   sec.textContent="روتین‌های امروز";
   p.appendChild(sec);
   var rb=document.createElement("div");rb.className="rbox";rb.style.setProperty("--acc",ACC[tab]);
