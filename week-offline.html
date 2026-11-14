@@ -20,9 +20,9 @@ body{font-family:'VazirB',Tahoma,sans-serif;background:#0b132b;min-height:100vh;
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 8px;}
 .cell{text-align:center;}
 .circ{width:100%;max-width:158px;height:120px;margin:0 auto;border:3.5px solid var(--acc,#14213d);border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;background:#fff;}
-.circ:before{content:'';position:absolute;inset:6px;border:1.5px dashed var(--acc,#ffc800);border-radius:50%;}
-.circ .num{position:absolute;top:2px;left:6px;width:22px;height:22px;background:var(--acc,#ffc800);color:var(--tb,#14213d);border-radius:50%;font-size:12px;line-height:22px;}
-.circ input{width:82%;border:none;background:transparent;font-family:inherit;font-weight:bold;color:#000;font-size:14.5px;text-align:center;outline:none;}
+.circ:before{content:'';position:absolute;inset:6px;border:1.5px dashed var(--acc,#ffc800);border-radius:50%;pointer-events:none;}
+.circ .num{position:absolute;top:2px;left:6px;width:22px;height:22px;background:var(--acc,#ffc800);color:var(--tb,#14213d);border-radius:50%;font-size:12px;line-height:22px;pointer-events:none;}
+.circ input{width:82%;border:none;background:transparent;font-family:inherit;font-weight:bold;color:#000;font-size:14.5px;text-align:center;outline:none;position:relative;z-index:2;}
 .trow{margin-top:3px;font-size:12px;display:flex;align-items:center;justify-content:center;gap:4px;}
 .trow input{width:86px;border:none;border-bottom:1.5px dashed #b8c2d4;background:transparent;font-family:inherit;font-weight:bold;color:#000;font-size:12.5px;text-align:center;outline:none;}
 .sec{background:var(--acc,#1f3a63);color:var(--tb,#fff);border-radius:8px;padding:8px 12px;font-size:15px;margin:16px 0 8px;border-right:6px solid var(--acc,#ffc800);}
@@ -30,7 +30,7 @@ body{font-family:'VazirB',Tahoma,sans-serif;background:#0b132b;min-height:100vh;
 .rline{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
 .rline .h{color:#ff6b6b;font-size:15px;}
 .rline input{flex:1;border:none;border-bottom:1.5px dashed #b8c2d4;background:transparent;font-family:inherit;font-weight:bold;color:#000;font-size:14px;outline:none;padding:4px 2px;}
-.quote{margin-top:16px;background:var(--qb,#ffc800);color:var(--qt,#000);border:2px solid var(--qb,#ffd93d);border-radius:12px;padding:10px;text-align:center;font-size:14px;}
+.quote{margin-top:14px;background:var(--qb,#ffc800);color:var(--qt,#000);border:2px solid var(--qb,#ffd93d);border-radius:12px;padding:8px 10px;text-align:center;font-size:12.5px;line-height:1.9;font-weight:bold;}
 .cover{text-align:center;padding:10px 4px;}
 .cover .medal{font-size:44px;}
 .cover h1{color:#14213d;font-size:26px;margin:6px 0 2px;}
@@ -84,8 +84,9 @@ var TINT=["#ffe9f3","#fff8d6","#ffe3e3","#e2f6e9","#f2e7d9","#ffedd9","#ececec"]
 var DOT=["rgba(255,79,154,.16)","rgba(255,200,0,.20)","rgba(224,32,32,.12)","rgba(47,174,95,.14)","rgba(139,90,43,.14)","rgba(255,122,26,.15)","rgba(17,17,17,.08)"];
 var MID=["💪","📚","🧠","✍🏻","🎯","⭐","🌙"];
 var FUN=["🥤","🍭","🍫","🎧","⚽","🎮","🧸"];
+var STUDY=["☕","✏️","📒","📈","🗂️","⏳","🌈"];
 var MISS=["بعد از هر درس، ۵ تا آب بخور 💧","یه آهنگ خوب بعد از مطالعه گوش بده 🎵","به خودت یه تشویق بکن، تو عالی‌ای 👏","امروز زودتر بخواب، قهرمان‌ها می‌خوابن 😴","یه خوراکی خوشمزه وسط مطالعه بخور 🍫","به یه دوستت بگو چقدر پیشرفت کردی 📞","امروز تفریح کن، استراحت هم جزو برنامه‌ست! 🎈"];
-var Q7=["شروع قوی، پایان قوی","هر خط، یک قدم به هدفت","تمرکز یعنی قدرت","امروز مال توئه","قهرمان‌ها تمرین می‌کنند","سخت بگیر، درخشان شو","استراحت هم جزو برنامه‌ست!"];
+var Q7=["۶ ساعت مطالعه‌ی مفید بهتر از صفر ساعت است؛ پس بدون بهانه شروع کن","بدون پارت‌بندی و نظم، روزت پیش نمی‌رود؛ برای هر ساعتت برنامه‌ی دقیق داشته باش","با حذف اتلاف‌ها و ساعت‌بندی دقیق، ساعت مطالعه‌ات به طرز عجیبی بالا می‌رود","کنکوری بودن یعنی از یک دقیقه‌ی روزت هم ساده نگذری","وقتی حالت بده و هیچ امیدی نداری، دقیقاً از همان نقطه شروع کن","الان انتخاب‌کننده تویی: شب، با حس خوب به روزت نگاه کن یا با حسرت","نظم و استمرار، مرز بین آرزو و قبولی است"];
 var KEY="weekplanner-v1";
 var DB=JSON.parse(localStorage.getItem(KEY)||"{}");
 if(!DB.days)DB.days={};
@@ -111,6 +112,7 @@ function build(tab){
   stk("⭐","top:6px;right:10px;font-size:26px;transform:rotate(-14deg);");
   stk("✨","top:12px;left:12px;font-size:20px;");
   stk(FUN[tab],"bottom:10px;left:12px;font-size:24px;transform:rotate(-10deg);");
+  stk(STUDY[tab],"bottom:12px;right:14px;font-size:21px;transform:rotate(9deg);");
  }
  if(tab===-1){
   p.innerHTML='<div class="cover"><div class="medal">🏅</div><h1>برنامه‌ی هفتگی</h1><div class="sub">قهرمانانه ✨</div></div>';
@@ -124,6 +126,11 @@ function build(tab){
     var dp=document.createElement("div");dp.className="daypills";
   for(let i7=0;i7<7;i7++){var sp=document.createElement("span");sp.textContent=DAYS[i7];sp.style.background=ACC[i7];sp.style.color=TB[i7];dp.appendChild(sp);}
   p.appendChild(dp);
+  var dr=document.createElement("div");dr.className="daypills";dr.style.flexWrap="wrap";dr.style.justifyContent="center";
+  var CR=[["⚖️","وکالت"],["🏛️","معماری"],["👩‍⚖️","قضاوت"],["🎓","فرهنگیان"],["📰","روزنامه‌نگاری"]];
+  for(let i9=0;i9<CR.length;i9++){var ds=document.createElement("span");ds.textContent=CR[i9][0]+" "+CR[i9][1];ds.style.background="#14213d";ds.style.color="#ffffff";ds.style.border="1.5px solid #ffc800";dr.appendChild(ds);}
+  p.appendChild(dr);
+  var sm=document.createElement("div");sm.className="midstk";sm.textContent="🔥 استمرار = قبولی | هر روز، یک قدم 🔥";p.appendChild(sm);
   var ms=document.createElement("div");ms.className="midstk";ms.textContent="✨ 👑 قهرمان این هفته تو هستی ✨";p.appendChild(ms);
   var h=document.createElement("div");h.className="hint";
   h.innerHTML="این صفحه همیشه بدون اینترنت کار می‌کند 📴<br>هر چی بنویسی خودش ذخیره می‌شود ✓<br>برای فرستادن به دانش‌آموز: دکمه «ذخیره PDF» رو بزن 📄 و توی چاپگر، «Save as PDF» رو انتخاب کن";
