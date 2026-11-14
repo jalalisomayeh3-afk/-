@@ -51,20 +51,36 @@ body{font-family:'VazirB',Tahoma,sans-serif;background:#0b132b;min-height:100vh;
 .rbox{position:relative;}
 .rbox:before{content:'\1F380';position:absolute;top:-16px;right:12px;font-size:24px;transform:rotate(-10deg);z-index:2;}
 .daypills{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin:14px 2px 4px;}
+.rules{margin-top:14px;background:#fff;border:2.5px solid #14213d;border-radius:14px;padding:10px 12px;box-shadow:4px 4px 0 rgba(20,33,61,.15);}
+.rules b{display:block;text-align:center;color:#14213d;font-size:15px;margin-bottom:6px;}
+.rules .ri{font-size:13px;font-weight:bold;color:#000;padding:4px 2px;}
 .daypills span{font-size:10.5px;font-weight:bold;padding:3px 9px;border-radius:10px;}
 .mission{margin-top:12px;background:#fff;border:2px dashed var(--acc,#ffc800);border-radius:12px;padding:8px 10px;text-align:center;font-size:13.5px;color:#000;line-height:1.7;}
 .mission b{color:var(--acc,#14213d);}
 .wstars{display:flex;justify-content:center;gap:7px;margin-top:10px;font-size:19px;}
+.rate{display:flex;align-items:center;justify-content:center;gap:7px;margin-top:9px;font-size:11.5px;font-weight:bold;color:#000;}
+.rate .rc{width:17px;height:17px;border:2.5px solid var(--acc,#14213d);border-radius:50%;display:inline-block;background:#fff;}
 .wstars .on{transform:scale(1.3);}
 .foot{text-align:center;font-size:11px;color:#98a2b3;margin-top:10px;}
-@page{size:90mm 205mm;margin:0;}
+@page{size:112mm 344mm;margin:0;}
 @media print{
  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
  body{background:#fff;padding:0;}
  .wrap{max-width:none;}
  .tabs,.tools,.hint,.saved{display:none !important;}
- .page{display:block !important;box-shadow:none;border-radius:0;margin:0;page-break-after:always;zoom:.65;width:138mm;height:314mm;}
+ .page{display:block !important;box-shadow:none;border-radius:0;margin:0;page-break-after:always;zoom:1;width:420px;height:1295px;}
+ .page:first-child{display:flex !important;flex-direction:column;justify-content:center;}
  .page:last-child{page-break-after:auto;}
+ .circ input{font-size:17px !important;}
+ .trow input{font-size:15px !important;}
+ .rline input{font-size:16px !important;}
+ .covrow input{font-size:17px !important;}
+ .quote{font-size:14px !important;}
+ .mission{font-size:13.5px !important;}
+ .sec{font-size:16px !important;}
+ .rate{font-size:13px !important;}
+ .foot{font-size:12.5px !important;}
+ .wstars{font-size:22px !important;}
 }
 </style>
 </head>
@@ -85,7 +101,7 @@ var DOT=["rgba(255,79,154,.16)","rgba(255,200,0,.20)","rgba(224,32,32,.12)","rgb
 var MID=["💪","📚","🧠","✍🏻","🎯","⭐","🌙"];
 var FUN=["🥤","🍭","🍫","🎧","⚽","🎮","🧸"];
 var STUDY=["☕","✏️","📒","📈","🗂️","⏳","🌈"];
-var MISS=["بعد از هر درس، ۵ تا آب بخور 💧","یه آهنگ خوب بعد از مطالعه گوش بده 🎵","به خودت یه تشویق بکن، تو عالی‌ای 👏","امروز زودتر بخواب، قهرمان‌ها می‌خوابن 😴","یه خوراکی خوشمزه وسط مطالعه بخور 🍫","به یه دوستت بگو چقدر پیشرفت کردی 📞","امروز تفریح کن، استراحت هم جزو برنامه‌ست! 🎈"];
+var TEL=["بچه‌ها درس بخونید، درس بخونید! بخدا هیچی مثل درس خوب نیست","کسی که درس می‌خونه و بعدش شغل آزاد انتخاب می‌کنه، ۹۰٪ موفق‌تره","کاش آن‌قدر درس می‌خوندم که پشت کنکور نمی‌موندم","کاش به حرف بقیه اهمیت نمی‌دادم و جلوی تحقیرها سکوت نمی‌کردم","کاش روی نهایی‌ها بیشتر تمرکز می‌کردم؛ هر سال تراز نهایی افت می‌کنه","تصور الکیِ اینکه دارم بد جواب می‌دم، رتبه‌م رو نصف کرد","کاش نمی‌گذاشتم گذشته‌ی دردناک بگه لایق آینده‌ی بهتر نیستم"];
 var Q7=["۶ ساعت مطالعه‌ی مفید بهتر از صفر ساعت است؛ پس بدون بهانه شروع کن","بدون پارت‌بندی و نظم، روزت پیش نمی‌رود؛ برای هر ساعتت برنامه‌ی دقیق داشته باش","با حذف اتلاف‌ها و ساعت‌بندی دقیق، ساعت مطالعه‌ات به طرز عجیبی بالا می‌رود","کنکوری بودن یعنی از یک دقیقه‌ی روزت هم ساده نگذری","وقتی حالت بده و هیچ امیدی نداری، دقیقاً از همان نقطه شروع کن","الان انتخاب‌کننده تویی: شب، با حس خوب به روزت نگاه کن یا با حسرت","نظم و استمرار، مرز بین آرزو و قبولی است"];
 var KEY="weekplanner-v1";
 var DB=JSON.parse(localStorage.getItem(KEY)||"{}");
@@ -132,6 +148,12 @@ function build(tab){
   p.appendChild(dr);
   var sm=document.createElement("div");sm.className="midstk";sm.textContent="🔥 استمرار = قبولی | هر روز، یک قدم 🔥";p.appendChild(sm);
   var ms=document.createElement("div");ms.className="midstk";ms.textContent="✨ 👑 قهرمان این هفته تو هستی ✨";p.appendChild(ms);
+  var rl=document.createElement("div");rl.className="rules";
+  rl.innerHTML="<b>📏 قوانین طلایی هفته</b><div class='ri'>⭐ هر ساعت، یک پارت مشخص</div><div class='ri'>⏱️ استراحت‌ها کوتاه و زمان‌دار</div><div class='ri'>📵 گوشی فقط بعد از پارت‌ها</div><div class='ri'>📩 هر شب، گزارش به مشاور</div>";
+  p.appendChild(rl);
+  var cq=document.createElement("div");cq.className="quote";cq.style.setProperty("--qb","#14213d");cq.style.setProperty("--qt","#ffc800");
+  cq.textContent="« این هفته، هفته‌ی توست؛ پس از یک دقیقه‌اش هم ساده نگذر »";
+  p.appendChild(cq);
   var h=document.createElement("div");h.className="hint";
   h.innerHTML="این صفحه همیشه بدون اینترنت کار می‌کند 📴<br>هر چی بنویسی خودش ذخیره می‌شود ✓<br>برای فرستادن به دانش‌آموز: دکمه «ذخیره PDF» رو بزن 📄 و توی چاپگر، «Save as PDF» رو انتخاب کن";
   p.appendChild(h);
@@ -170,11 +192,15 @@ function build(tab){
   }
   p.appendChild(rb);
     var wb=document.createElement("div");wb.className="mission";wb.style.setProperty("--acc",ACC[tab]);
-  wb.innerHTML="<b>🎯 ماموریت ویژه امروز:</b> "+MISS[tab];
+  wb.innerHTML="<b>🔔 عبرت از دیگران:</b> "+TEL[tab];
   p.appendChild(wb);
   var ws=document.createElement("div");ws.className="wstars";ws.style.setProperty("--acc",ACC[tab]);
   for(let i8=0;i8<7;i8++){var ss=document.createElement("span");ss.textContent="⭐";if(i8===tab){ss.className="on";}else{ss.style.opacity=".22";}ws.appendChild(ss);}
   p.appendChild(ws);
+  var rt=document.createElement("div");rt.className="rate";rt.style.setProperty("--acc",ACC[tab]);
+  var rl=document.createElement("span");rl.className="rl";rl.textContent="امروز چقدر عالی بودی؟";rt.appendChild(rl);
+  for(let i10=0;i10<5;i10++){var rc=document.createElement("span");rc.className="rc";rt.appendChild(rc);}
+  p.appendChild(rt);
   var ms=document.createElement("div");ms.className="midstk";ms.textContent="🌟 "+MID[tab]+" 🌟";p.appendChild(ms);
   var q=document.createElement("div");q.className="quote";
   q.style.setProperty("--qb",QB[tab]);q.style.setProperty("--qt",QT[tab]);
